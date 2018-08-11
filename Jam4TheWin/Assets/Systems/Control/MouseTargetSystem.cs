@@ -36,7 +36,7 @@ namespace Systems.Control
                 RaycastHit hit;
                 if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;
 
-                component.MousePosition.Value = hit.point;
+                component.MousePosition.Value = new Vector3(hit.point.x, 0, hit.point.z);
             };
         }
     }
