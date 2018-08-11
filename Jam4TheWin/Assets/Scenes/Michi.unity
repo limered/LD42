@@ -973,9 +973,9 @@ GameObject:
   - component: {fileID: 2125816397}
   - component: {fileID: 2125816396}
   - component: {fileID: 2125816398}
-  - component: {fileID: 2125816399}
   - component: {fileID: 2125816400}
   - component: {fileID: 2125816401}
+  - component: {fileID: 2125816399}
   m_Layer: 0
   m_Name: Person1
   m_TagString: Untagged
@@ -1022,7 +1022,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 0.32, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -1054,18 +1054,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   only2DRotation: 1
---- !u!114 &2125816399
-MonoBehaviour:
+--- !u!95 &2125816399
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2125816395}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a89579b6c77ac41799914542942ea794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customOffsetToGround: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 941fc352d5097494ba9ed260581565ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &2125816400
 CapsuleCollider:
   m_ObjectHideFlags: 0

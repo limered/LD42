@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Systems.Player
+namespace Systems.Movement
 {
     public class TargetedMovementComponent : GameComponent
     {
