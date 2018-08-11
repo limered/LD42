@@ -19,8 +19,11 @@ namespace Systems.Movement
 
         private static void MoveTotarget(TargetedMovementComponent comp)
         {
-            comp.Direction.Value = comp.transform.position.DirectionTo(comp.Target.transform.position);
-            comp.Distance.Value = comp.transform.position.DistanceTo(comp.Target.transform.position);
+            if (comp.Target)
+            {
+                comp.Direction.Value = comp.transform.position.DirectionTo(comp.Target.transform.position);
+                comp.Distance.Value = comp.transform.position.DistanceTo(comp.Target.transform.position);
+            }
 
             if (!comp.IsMoving) return;
 

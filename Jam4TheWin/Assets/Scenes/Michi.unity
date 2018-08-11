@@ -293,7 +293,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 668634485}
   m_LocalRotation: {x: 0.1464466, y: -0.8535535, z: 0.35355338, w: 0.35355338}
-  m_LocalPosition: {x: 6.1729, y: 8.4097, z: 6.1729}
+  m_LocalPosition: {x: 32.39, y: 45.49, z: 32.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -974,8 +974,9 @@ GameObject:
   - component: {fileID: 2125816396}
   - component: {fileID: 2125816398}
   - component: {fileID: 2125816400}
-  - component: {fileID: 2125816401}
   - component: {fileID: 2125816399}
+  - component: {fileID: 2125816402}
+  - component: {fileID: 2125816401}
   m_Layer: 0
   m_Name: Person1
   m_TagString: Untagged
@@ -1096,4 +1097,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5ab7984d7c74059bc11796074627bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  Speed: 1
+--- !u!114 &2125816402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2125816395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01ce5f5f7ac465e9e5726d1868ddd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Acceleration: 1
+  MaxSpeed: 0.5
+  MaxDistance: 1
+  Target: {fileID: 0}
+  IsMoving: 1
+  Direction:
+    value: {x: 0, y: 0, z: 0}
+  Distance:
+    value: 0
