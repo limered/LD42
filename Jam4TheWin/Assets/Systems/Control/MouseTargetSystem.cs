@@ -8,16 +8,16 @@ using UnityEngine.Experimental.UIElements;
 namespace Systems.Control
 {
     [GameSystem]
-    public class PlayerinteractionSystem : GameSystem<PlayerInteractionComponent>
+    public class MouseTargetSystem : GameSystem<MouseControlComponent>
     {
-        public override void Register(PlayerInteractionComponent component)
+        public override void Register(MouseControlComponent component)
         {
             component.UpdateAsObservable()
                 .Subscribe(CheckMousePorition(component))
                 .AddTo(component);
         }
 
-        private static Action<Unit> CheckMousePorition(PlayerInteractionComponent component)
+        private static Action<Unit> CheckMousePorition(MouseControlComponent component)
         {
             return u =>
             {
@@ -36,7 +36,7 @@ namespace Systems.Control
                 RaycastHit hit;
                 if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;
 
-                component.MousePosition.Value = new Vector2(hit.point.x, hit.point.z);
+                component.MousePosition.Value = hit.point;
             };
         }
     }
