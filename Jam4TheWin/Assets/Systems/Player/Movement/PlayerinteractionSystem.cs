@@ -7,8 +7,8 @@ using UnityEngine.Experimental.UIElements;
 
 namespace Systems.Player.Movement
 {
-    [GameSystem(typeof(CatSystem))]
-    public class MovementSystem : GameSystem<PlayerInteractionComponent>
+    [GameSystem]
+    public class PlayerinteractionSystem : GameSystem<PlayerInteractionComponent>
     {
         public override void Register(PlayerInteractionComponent component)
         {
@@ -37,7 +37,6 @@ namespace Systems.Player.Movement
                 if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;
 
                 component.MousePosition.Value = new Vector2(hit.point.x, hit.point.z);
-                Debug.Log(component.MousePosition.Value.x + " " + component.MousePosition.Value.y);
             };
         }
     }
