@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 055f2b2236f1b4ac5ab35a29205b6c41
+guid: b78fdb750ef33484ebdcc67a2fddb3ab
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bulb_stinky-Sheet_0
-    21300002: Bulb_stinky-Sheet_1
-    21300004: Bulb_stinky-Sheet_2
-    21300006: Bulb_stinky-Sheet_3
-    21300008: Bulb_stinky-Sheet_4
-    21300010: Bulb_stinky-Sheet_5
+    21300000: Cat_Pooping-Sheet_0
+    21300002: Cat_Pooping-Sheet_1
+    21300004: Cat_Pooping-Sheet_2
+    21300006: Cat_Pooping-Sheet_3
+    21300008: Cat_Pooping-Sheet_4
+    21300010: Cat_Pooping-Sheet_5
+    21300012: Cat_Pooping-Sheet_6
+    21300014: Cat_Pooping-Sheet_7
+    21300016: Cat_Pooping-Sheet_8
+    21300018: Cat_Pooping-Sheet_9
+    21300020: Cat_Pooping-Sheet_10
+    21300022: Cat_Pooping-Sheet_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -101,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bulb_stinky-Sheet_0
+      name: Cat_Pooping-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,13 +121,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff6cfa304fb6c204fa9d3f79269a35b7
+      spriteID: 3048ccee2003fb0448a071e23c4d3655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bulb_stinky-Sheet_1
+      name: Cat_Pooping-Sheet_1
       rect:
         serializedVersion: 2
         x: 200
@@ -135,13 +141,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 274b216fa096403499e810371d8f172b
+      spriteID: 9ed81904faa972d44aa1303460d4dec4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bulb_stinky-Sheet_2
+      name: Cat_Pooping-Sheet_2
       rect:
         serializedVersion: 2
         x: 400
@@ -155,13 +161,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b16bb5225ee05a42a6b5650f2a27e1f
+      spriteID: 29fdc8add974f74409f44b80e5d37a08
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bulb_stinky-Sheet_3
+      name: Cat_Pooping-Sheet_3
       rect:
         serializedVersion: 2
         x: 600
@@ -175,13 +181,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eceb88fe142ec4c4e91b5429b77a6faf
+      spriteID: 28106455b05ee4e4ab2ee58a86762da3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bulb_stinky-Sheet_4
+      name: Cat_Pooping-Sheet_4
       rect:
         serializedVersion: 2
         x: 800
@@ -195,13 +201,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 493c034a9516f644abe00ea7057dd60c
+      spriteID: 43282b4ab88ab7b459adf2fe486c2e49
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bulb_stinky-Sheet_5
+      name: Cat_Pooping-Sheet_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -215,7 +221,127 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fa2936baf6d3d24ca869ed3691e6761
+      spriteID: a51ced938b65aee4a9d97393d19e230a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_Pooping-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a5cc75b815d5a4fa3f7013020aeae0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_Pooping-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af96f67f10c61e5418246d171226d602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_Pooping-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c4c02659296504994e05877064e826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_Pooping-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517afa568be57e848a3d91901c54db4c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_Pooping-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9edeca83381f841a63190ade98fdd2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_Pooping-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99351c0189b9e33438c94117b83b852f
       vertices: []
       indices: 
       edges: []
@@ -223,7 +349,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 871cb9255455f354bb869d81b43c395d
+    spriteID: 0c9807e5a0a991b44b7739c0efa6606b
     vertices: []
     indices: 
     edges: []
