@@ -11,10 +11,12 @@ namespace Systems.Player
     public class PlayerSystem : GameSystem<MouseControlComponent, CatComponent>
     {
         private readonly ReactiveProperty<MouseControlComponent> _mouse = new ReactiveProperty<MouseControlComponent>();
+        private CatStateContext _catStateContext;
 
         public override void Register(CatComponent component)
         {
             _mouse.Skip(1).Subscribe(RegisterCatComponent(component)).AddTo(component);
+
         }
 
         private static Action<MouseControlComponent> RegisterCatComponent(CatComponent cat)
