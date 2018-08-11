@@ -6,6 +6,7 @@ using Utils.Math;
 
 namespace Systems.Player
 {
+    [GameSystem]
     public class MovementSystem : GameSystem<TargetedMovementComponent>
     {
         public override void Register(TargetedMovementComponent component)
