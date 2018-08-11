@@ -1,4 +1,6 @@
-﻿using SystemBase;
+﻿using System;
+using SystemBase;
+using Systems.Room;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -13,24 +15,28 @@ namespace Systems.Movement
         {
             component.UpdateAsObservable()
                 .Select(_ => component)
-                .Subscribe(MoveTotarget)
+                .Subscribe(MoveTotarget(component.GetComponent<KeepInsideRoomComponent>()))
                 .AddTo(component);
         }
 
-        private static void MoveTotarget(TargetedMovementComponent comp)
+        private static Action<TargetedMovementComponent> MoveTotarget(KeepInsideRoomComponent insideRoomComp)
         {
-            if (comp.Target)
+            return (TargetedMovementComponent comp) =>
             {
-                comp.Direction.Value = comp.transform.position.DirectionTo(comp.Target.transform.position);
-                comp.Distance.Value = comp.transform.position.DistanceTo(comp.Target.transform.position);
-            }
+                if (comp.Target)
+                {
+                    comp.Direction.Value = comp.transform.position.DirectionTo(comp.Target.transform.position);
+                    comp.Distance.Value = comp.transform.position.DistanceTo(comp.Target.transform.position);
+                }
 
-            if (!comp.IsMoving) return;
+                if (!comp.IsMoving) return;
 
-            var velocity = comp.Acceleration * (comp.Distance.Value / comp.MaxDistance) * Time.deltaTime;
-            velocity = Mathf.Min(velocity, comp.MaxSpeed);
+                var velocity = comp.Acceleration * (comp.Distance.Value / comp.MaxDistance) * Time.deltaTime;
+                velocity = Mathf.Min(velocity, comp.MaxSpeed);
 
-            comp.transform.position += comp.Direction.Value * velocity;
+                if (insideRoomComp == null || insideRoomComp.CanMoveInDirection(comp.Direction.Value * velocity + (comp.Direction.Value.normalized * insideRoomComp.obstaclePaddig)))
+                    comp.transform.position += comp.Direction.Value * velocity;
+            };
         }
     }
 }

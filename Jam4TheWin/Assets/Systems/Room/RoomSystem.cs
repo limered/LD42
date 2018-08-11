@@ -5,15 +5,17 @@ using UniRx.Triggers;
 using UniRx;
 using UnityEngine;
 using Utils.Plugins;
+using System.Linq;
 
 namespace Systems.Room
 {
     [GameSystem]
-    public class RoomSystem : GameSystem<FloorComponent, WallComponent, KeepInsideRoomComponent>
+    public class RoomSystem : GameSystem<FloorComponent, WallComponent, KeepInsideRoomComponent, FurnitureComponent>
     {
         private FloorComponent floor;
         public FloorComponent Floor { get { return floor; } }
         private List<WallComponent> walls = new List<WallComponent>();
+        private List<FurnitureComponent> furniture = new List<FurnitureComponent>();
 
         public override void Register(FloorComponent comp)
         {
@@ -44,19 +46,32 @@ namespace Systems.Room
             })
             .AddTo(comp);
 
+            var personCollider = comp.GetComponent<Collider>();
+
             //don't go through walls
-            // comp.UpdateAsObservable()
-            // .SelectMany(_ => walls)
-            // .Subscribe(wall =>
-            // {
-            //     var personCollider = comp.GetComponent<Collider>();
-            //     var wallCollider = wall.GetComponent<Collider>();
-            //     if (personCollider.bounds.Intersects(wallCollider.bounds))
-            //     {
-            //         comp.transform.position += (-wall.transform.position).normalized
-            //     }
-            // })
-            // .AddTo(comp);
+            comp.CanMoveInDirection = dir =>
+            {
+                foreach (var collider in walls.Select(x => x.GetComponent<Collider>()).Concat(furniture.Select(x => x.GetComponent<Collider>())).ToArray())
+                {
+                    float intersectionDistance;
+                    if (collider.bounds.IntersectRay(new Ray(personCollider.transform.position, dir), out intersectionDistance))
+                    {
+                        if (intersectionDistance <= dir.magnitude)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            };
+        }
+
+        public override void Register(FurnitureComponent comp)
+        {
+            if (!furniture.Contains(comp))
+            {
+                furniture.Add(comp);
+            }
         }
     }
 }
