@@ -4,7 +4,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using Utils.Math;
 
-namespace Systems.Player
+namespace Systems.Movement
 {
     [GameSystem]
     public class MovementSystem : GameSystem<TargetedMovementComponent>

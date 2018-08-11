@@ -5,7 +5,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 
-namespace Systems.Player.Movement
+namespace Systems.Control
 {
     [GameSystem]
     public class PlayerinteractionSystem : GameSystem<PlayerInteractionComponent>

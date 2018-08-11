@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Systems.Player.Movement
+namespace Systems.Control
 {
     public class PlayerInteractionComponent : GameComponent
     {
