@@ -11,7 +11,7 @@ namespace Systems.Movement
         public float MaxDistance;
         public GameObject Source;
 
-        public override void Mutate(Vector3 oldDirection, float oldSpeed, out Vector3 newDirection, out float newSpeed)
+        public override void Mutate(bool canMove, Vector3 oldDirection, float oldSpeed, out Vector3 newDirection, out float newSpeed)
         {
             if (Source)
             {
@@ -37,7 +37,7 @@ namespace Systems.Movement
             }
             else
             {
-                base.Mutate(oldDirection, oldSpeed, out newDirection, out newSpeed);
+                base.Mutate(canMove, oldDirection, oldSpeed, out newDirection, out newSpeed);
             }
         }
     }

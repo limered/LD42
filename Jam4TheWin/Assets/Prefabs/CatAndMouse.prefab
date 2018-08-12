@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 114957247482388072}
   - component: {fileID: 114228065954729170}
   - component: {fileID: 114881817183350666}
+  - component: {fileID: 114948618744809252}
   m_Layer: 12
   m_Name: Cat
   m_TagString: Player
@@ -504,6 +505,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2194d0dd6654d31804b4397b325cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollidesWith:
+    serializedVersion: 2
+    m_Bits: 2147483647
   ObstaclePaddig: 1
 --- !u!114 &114256925447846622
 MonoBehaviour:
@@ -605,7 +609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &114948618744809252
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941772463828248}
@@ -632,7 +636,8 @@ MonoBehaviour:
   MovementMutators:
   - {fileID: 114563054145997052}
   - {fileID: 114228065954729170}
-  CanMove: 0
+  CanMove:
+    value: 0
   Direction:
     value: {x: 0, y: 0, z: 0}
   Speed:
