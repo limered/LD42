@@ -1,8 +1,5 @@
-using SystemBase;
-using UniRx;
 using UnityEngine;
 using Utils.Math;
-using Utils.Unity;
 
 namespace Systems.Movement
 {
@@ -16,11 +13,11 @@ namespace Systems.Movement
         {
             var baseDirection = oldDirection;
             var range = 360 - (Accuracy * 360);
-            var dir2D = UnityEngine.Random.value > 0.5f
-                 ? VectorUtils.Rotate(new Vector2(baseDirection.x, baseDirection.z), UnityEngine.Random.value * range / 2f)
-                 : VectorUtils.Rotate(new Vector2(baseDirection.x, baseDirection.z), UnityEngine.Random.value * (-range) / 2f);
+            var dir2D = Random.value > 0.5f
+                 ? new Vector2(baseDirection.x, baseDirection.z).Rotate(Random.value * range / 2f)
+                 : new Vector2(baseDirection.x, baseDirection.z).Rotate(Random.value * (-range) / 2f);
             var direction = new Vector3(dir2D.x, 0, dir2D.y);
-            
+
             newDirection = direction;
             newSpeed = oldSpeed;
         }
