@@ -7,6 +7,7 @@ using UnityEngine;
 using Utils.Plugins;
 using Utils.Math;
 using Systems.Movement;
+using System;
 
 namespace Systems.People
 {
@@ -16,35 +17,17 @@ namespace Systems.People
         public override void Register(PersonComponent comp)
         {
             var moveComp = comp.GetComponent<TargetedMovementComponent>();
-            comp.UpdateAsObservable()
-                .Where((_, i) => i % 60 == 0)
-                .Subscribe(_ => MoveFunny(comp, moveComp))
+
+            Observable.Interval(TimeSpan.FromSeconds(10))
+                .StartWith(0)
+                .Subscribe(_ => GoToNextLocation(comp, moveComp))
                 .AddTo(comp);
         }
 
-        private void MoveFunny(PersonComponent comp, TargetedMovementComponent moveComp)
+        private void GoToNextLocation(PersonComponent comp, TargetedMovementComponent moveComp)
         {
-            var direction = new Vector3().RandomVector(new Vector3(-comp.Speed, -comp.Speed, -comp.Speed), new Vector3(comp.Speed, comp.Speed, comp.Speed)).normalized;
-            direction.y = 0;
-
-            moveComp.Direction.Value = direction;
-            moveComp.Distance.Value = moveComp.MaxSpeed;
-
-            //CoRoutines are normally only possible on MonoBehaviour/Render Thread. This is again UniRx Magic
-            // MainThreadDispatcher.StartUpdateMicroCoroutine(MoveStraight(direction, comp));
-        }
-
-        /**
-         * CoRoutine
-         */
-
-        private IEnumerator MoveStraight(Vector3 direction, Component comp)
-        {
-            for (var i = 0; i < 30; i++)
-            {
-                comp.transform.position += direction * Time.deltaTime;
-                yield return null;
-            }
+            var spots = GameObject.FindGameObjectsWithTag("gathering spot");
+            if (spots.Length > 0) moveComp.Target = spots[UnityEngine.Random.Range(0, spots.Length)];
         }
     }
 }
