@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SystemBase;
+﻿using SystemBase;
 using Systems.Movement;
 using Systems.Room;
+using UnityEngine;
 
 namespace Systems.People
 {
@@ -11,6 +9,6 @@ namespace Systems.People
     [RequireComponent(typeof(TargetMutator))]
     public class PersonComponent : GameComponent
     {
-        
+        public PeapoleStateContext StateContext;
     }
 }

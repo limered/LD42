@@ -29,7 +29,7 @@ namespace Systems.People.States
             var spots = Object.FindObjectsOfType<GatheringSpotComponent>();
             if (spots.Any())
             {
-                var movement = ctx.Person.GetComponent<TargetedMovementComponent>();
+                var movement = ctx.Person.GetComponent<TargetMutator>();
                 movement.Target = spots.RandomElement().gameObject;
 
                 _reachedStartSpot = ctx.Person.OnTriggerEnterAsObservable()

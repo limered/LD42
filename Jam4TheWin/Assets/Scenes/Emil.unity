@@ -118,6 +118,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1941772463828248, guid: 3fa6388c530f2724ea2ecae83c90237c,
     type: 2}
   m_PrefabInternal: {fileID: 734446900}
+--- !u!114 &147816197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 147816196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceb10e6bdce241bc8f5dbd1da85bd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Acceleration: 100
+  MaxSpeed: 0.3
+  MaxDistance: 5
+  Target: {fileID: 734446901}
+--- !u!114 &147816198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 147816196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76306dfd5efdb4993b8a9e857146c413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementMutators:
+  - {fileID: 147816197}
+  CanMove: 0
+  Direction:
+    value: {x: 0, y: 0, z: 0}
+  Speed:
+    value: 0
 --- !u!1 &308657650
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,9 +336,15 @@ Prefab:
       propertyPath: HitJumpForce
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114426523601941384, guid: 3fa6388c530f2724ea2ecae83c90237c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 3fa6388c530f2724ea2ecae83c90237c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &734446901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1867251451821282, guid: 3fa6388c530f2724ea2ecae83c90237c,
+    type: 2}
+  m_PrefabInternal: {fileID: 734446900}
 --- !u!1 &869680794
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,138 +586,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1540065019
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1540065023}
-  - component: {fileID: 1540065022}
-  - component: {fileID: 1540065021}
-  - component: {fileID: 1540065020}
-  - component: {fileID: 1540065026}
-  - component: {fileID: 1540065025}
-  - component: {fileID: 1540065024}
-  m_Layer: 0
-  m_Name: Person
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!136 &1540065020
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!23 &1540065021
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1540065022
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1540065023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.67, y: 0, z: 5.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1540065024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5ab7984d7c74059bc11796074627bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 1
---- !u!114 &1540065025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01ce5f5f7ac465e9e5726d1868ddd3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Acceleration: 20
-  MaxSpeed: 0.1
-  MaxDistance: 10
-  Target: {fileID: 147816196}
-  IsMoving: 0
-  Accuracy: 0.8
-  Direction:
-    value: {x: 0, y: 0, z: 0}
-  Distance:
-    value: 0
---- !u!114 &1540065026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1540065019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a23f464afba421ba3edda9233fef25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customOffsetToGround: 0
-  obstaclePaddig: 0

@@ -1,11 +1,6 @@
-﻿using System;
-using SystemBase;
-using Systems.Room;
+﻿using SystemBase;
 using UniRx;
 using UniRx.Triggers;
-using UnityEngine;
-using Utils.Math;
-using UnityEngine;
 
 namespace Systems.Movement
 {
