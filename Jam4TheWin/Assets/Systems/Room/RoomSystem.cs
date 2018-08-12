@@ -46,9 +46,18 @@ namespace Systems.Room
             })
             .AddTo(comp);
 
+            //push out of objects
             var personCollider = comp.GetComponent<Collider>();
+            comp.OnTriggerStayAsObservable()
+            // .Where(c => c.tag == "wall" || c.tag == "furniture")
+            .Subscribe(c =>
+            {
+                comp.transform.position += (comp.transform.position - c.transform.position) * Time.deltaTime;
+            })
+            .AddTo(comp);
 
-            //don't go through walls
+
+            //don't go through walls or furniture
             comp.CanMoveInDirection = dir =>
             {
                 foreach (var collider in walls.Select(x => x.GetComponent<Collider>()).Concat(furniture.Select(x => x.GetComponent<Collider>())).ToArray())

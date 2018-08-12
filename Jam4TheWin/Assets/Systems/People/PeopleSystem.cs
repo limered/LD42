@@ -16,10 +16,11 @@ namespace Systems.People
         public override void Register(PersonComponent comp)
         {
             var moveComp = comp.GetComponent<TargetedMovementComponent>();
-            comp.UpdateAsObservable()
-                .Where((_, i) => i % 60 == 0)
-                .Subscribe(_ => MoveFunny(comp, moveComp))
-                .AddTo(comp);
+            
+            // comp.UpdateAsObservable()
+            //     .Where((_, i) => i % 60 == 0)
+            //     .Subscribe(_ => MoveFunny(comp, moveComp))
+            //     .AddTo(comp);
         }
 
         private void MoveFunny(PersonComponent comp, TargetedMovementComponent moveComp)

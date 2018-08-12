@@ -5,6 +5,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using Utils.Math;
+using UnityEngine;
 
 namespace Systems.Movement
 {
@@ -34,8 +35,21 @@ namespace Systems.Movement
                 var velocity = comp.Acceleration * (comp.Distance.Value / comp.MaxDistance) * Time.deltaTime;
                 velocity = Mathf.Min(velocity, comp.MaxSpeed);
 
-                if (insideRoomComp == null || insideRoomComp.CanMoveInDirection(comp.Direction.Value * velocity + (comp.Direction.Value.normalized * insideRoomComp.obstaclePaddig)))
-                    comp.transform.position += comp.Direction.Value * velocity;
+                var range = 360 - (comp.Accuracy * 360);
+                var dir2D = UnityEngine.Random.value > 0.5f
+                     ? VectorUtils.Rotate(new Vector2(comp.Direction.Value.x, comp.Direction.Value.z), UnityEngine.Random.value * range / 2f)
+                     : VectorUtils.Rotate(new Vector2(comp.Direction.Value.x, comp.Direction.Value.z), UnityEngine.Random.value * (-range) / 2f);
+                var direction = new Vector3(dir2D.x, 0, dir2D.y);
+
+                if (insideRoomComp == null || insideRoomComp.CanMoveInDirection(direction * velocity + (direction.normalized * insideRoomComp.obstaclePaddig)))
+                {
+                    Debug.DrawRay(comp.transform.position, direction * velocity * 5, Color.green);
+                    comp.transform.position += direction * velocity;
+                }
+                else
+                {
+                    Debug.DrawRay(comp.transform.position, direction * velocity * 5, Color.red);
+                }
             };
         }
     }

@@ -15,6 +15,10 @@ namespace Systems.Movement
         public GameObject Target;
         public bool IsMoving;
 
+        [Tooltip("accuracy with which this gameobject is movig towards target\n(0 = complete random / 1 = 100% accurate)")]
+        [Range(0f,1f)]
+        public float Accuracy = 1f;
+
         public Vector3ReactiveProperty Direction = new Vector3ReactiveProperty();
         public FloatReactiveProperty Distance  = new FloatReactiveProperty();
     }
