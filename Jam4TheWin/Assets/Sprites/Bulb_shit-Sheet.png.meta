@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< develop
 guid: da883c63158a745aaa636b692d766d0a
-=======
-guid: d5cd23b7950106a4c95e1fdc3f4cb6b8
->>>>>>> add first cat control
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
