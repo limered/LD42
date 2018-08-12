@@ -49,15 +49,12 @@ namespace Systems.Room
             //push out of objects
             var personCollider = comp.GetComponent<Collider>();
             comp.OnTriggerStayAsObservable()
-            // .Where(c => c.tag == "wall" || c.tag == "furniture")
+            .Where(c => (c.gameObject.layer & comp.Dependency.CollidesWith) != 0)
             .Subscribe(c =>
             {
                 comp.transform.position += (comp.transform.position - c.transform.position) * Time.deltaTime;
             })
             .AddTo(comp);
-
-
-            var collisionMask = LayerMask.GetMask("Wall","Furniture", "Floor");
 
             //don't go through walls or furniture
             comp.Dependency.CanMoveInDirection = (dir, distance) =>

@@ -59,11 +59,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!95 &95562559700971724
 Animator:
@@ -137,7 +137,8 @@ MonoBehaviour:
   - {fileID: 114808817738109796}
   - {fileID: 114691339958576262}
   - {fileID: 114247255614954066}
-  CanMove: 1
+  CanMove:
+    value: 1
   Direction:
     value: {x: 0, y: 0, z: 0}
   Speed:
@@ -178,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ceb10e6bdce241bc8f5dbd1da85bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 5
+  Acceleration: 100
   MaxSpeed: 0.2
-  MaxDistance: 10
+  MaxDistance: 5
   Target: {fileID: 0}
 --- !u!136 &136089877840875232
 CapsuleCollider:
