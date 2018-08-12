@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace Systems.Movement
 {
-    public interface ITest {}
-
     public class MovementComponent : GameComponent
     {
         public MovementMutator[] MovementMutators; 
