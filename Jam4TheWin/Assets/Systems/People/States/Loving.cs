@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.Player;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Systems.People.States
 {
@@ -10,12 +13,16 @@ namespace Systems.People.States
         {
             get
             {
-                return null;
+                return new ReadOnlyCollection<Type>(new Type[] { typeof(Angry), typeof(Happy) });
             }
         }
-        public override bool Enter<TState>(IStateContext<TState> context) 
+        public override bool Enter<TState>(IStateContext<TState> context)
         {
-            return false;
+            var ctx = (PersonStateContext)context;
+
+            //TODO: stop person
+
+            return true;
         }
     }
 }

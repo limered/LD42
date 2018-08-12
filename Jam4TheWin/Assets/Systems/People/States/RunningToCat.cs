@@ -21,7 +21,7 @@ namespace Systems.People.States
         {
             get
             {
-                return new ReadOnlyCollection<Type>(new [] { typeof(Idle) });
+                return new ReadOnlyCollection<Type>(new [] { typeof(Idle), typeof(Angry) });
             }
         }
         public override bool Enter<TState>(IStateContext<TState> context)
@@ -31,6 +31,19 @@ namespace Systems.People.States
             var target = ctx.Person.GetComponent<TargetMutator>();
             target.Target = _cat;
 
+            //noticing that the cat stinks
+            ctx.Person
+                .OnTriggerEnterAsObservable()
+                .Subscribe(collider =>
+                {
+                    if (collider.GetComponent<StinkColliderComponent>())
+                    {
+                        ctx.GoToState(new Angry());
+                    }
+                })
+                .AddTo(this);
+
+            //running out of love radius
             ctx.Person
                 .OnTriggerExitAsObservable()
                 .Subscribe(collider =>

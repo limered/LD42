@@ -86,9 +86,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4789424082752050}
   - component: {fileID: 212400112951406538}
-  m_Layer: 0
+  - component: {fileID: 65814978919113782}
+  m_Layer: 15
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4882973494962076}
   - component: {fileID: 114218905789475584}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -1278,8 +1279,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 6.53, z: 9.67}
-  m_Center: {x: 0, y: 3.48, z: 0}
+  m_Size: {x: 4, y: 3.2, z: 9.67}
+  m_Center: {x: 0, y: 4.91, z: 0}
 --- !u!65 &65422809313702224
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1328,6 +1329,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 6.53, z: 9.67}
   m_Center: {x: 0, y: 3.48, z: 0}
+--- !u!65 &65814978919113782
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1259828997218990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.97, y: 1.39, z: 0.48}
+  m_Center: {x: 0.00000023841858, y: -0.000000029802322, z: -0.00000047683716}
 --- !u!65 &65918772809652052
 BoxCollider:
   m_ObjectHideFlags: 1
