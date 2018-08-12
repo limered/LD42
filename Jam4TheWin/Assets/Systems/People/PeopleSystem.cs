@@ -14,6 +14,14 @@ namespace Systems.People
     [GameSystem]
     public class PeopleSystem : GameSystem<PersonComponent>
     {
+        private GatheringSpotComponent[] _gatheringSpots;
+
+        public override void Init()
+        {
+            base.Init();
+            _gatheringSpots = GameObject.FindObjectsOfType<GatheringSpotComponent>();
+        }
+
         public override void Register(PersonComponent comp)
         {
             var targetComp = comp.GetComponent<TargetMutator>();
