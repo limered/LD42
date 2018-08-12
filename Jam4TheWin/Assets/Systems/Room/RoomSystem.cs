@@ -13,7 +13,7 @@ namespace Systems.Room
     public class RoomSystem : GameSystem<FloorComponent, WallComponent, KeepInsideRoomComponent, FurnitureComponent>
     {
         private FloorComponent floor;
-        public FloorComponent Floor { get { return floor; } }
+
         private List<WallComponent> walls = new List<WallComponent>();
         private List<FurnitureComponent> furniture = new List<FurnitureComponent>();
 
