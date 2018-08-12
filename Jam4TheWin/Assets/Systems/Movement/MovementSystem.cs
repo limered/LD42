@@ -10,47 +10,26 @@ using UnityEngine;
 namespace Systems.Movement
 {
     [GameSystem]
-    public class MovementSystem : GameSystem<TargetedMovementComponent>
+    public class MovementSystem : GameSystem<MovementComponent>
     {
-        public override void Register(TargetedMovementComponent component)
+        public override void Register(MovementComponent comp)
         {
-            component.UpdateAsObservable()
-                .Select(_ => component)
-                .Subscribe(MoveTotarget(component.GetComponent<KeepInsideRoomComponent>()))
-                .AddTo(component);
-        }
-
-        private static Action<TargetedMovementComponent> MoveTotarget(KeepInsideRoomComponent insideRoomComp)
-        {
-            return (TargetedMovementComponent comp) =>
+            comp.UpdateAsObservable()
+            .Subscribe(_ =>
             {
-                if (comp.Target)
+                if (!comp.CanMove) return;
+
+                var direction = comp.Direction.Value;
+                var speed = comp.Speed.Value;
+
+                foreach (var mutator in comp.MovementMutators)
                 {
-                    comp.Direction.Value = comp.transform.position.DirectionTo(comp.Target.transform.position);
-                    comp.Distance.Value = comp.transform.position.DistanceTo(comp.Target.transform.position);
+                    mutator.Mutate(direction, speed, out direction, out speed);
                 }
 
-                if (!comp.IsMoving) return;
-
-                var velocity = comp.Acceleration * (comp.Distance.Value / comp.MaxDistance) * Time.deltaTime;
-                velocity = Mathf.Min(velocity, comp.MaxSpeed);
-
-                var range = 360 - (comp.Accuracy * 360);
-                var dir2D = UnityEngine.Random.value > 0.5f
-                     ? VectorUtils.Rotate(new Vector2(comp.Direction.Value.x, comp.Direction.Value.z), UnityEngine.Random.value * range / 2f)
-                     : VectorUtils.Rotate(new Vector2(comp.Direction.Value.x, comp.Direction.Value.z), UnityEngine.Random.value * (-range) / 2f);
-                var direction = new Vector3(dir2D.x, 0, dir2D.y);
-
-                if (insideRoomComp == null || insideRoomComp.CanMoveInDirection(direction * velocity + (direction.normalized * insideRoomComp.obstaclePaddig)))
-                {
-                    Debug.DrawRay(comp.transform.position, direction * velocity * 5, Color.green);
-                    comp.transform.position += direction * velocity;
-                }
-                else
-                {
-                    Debug.DrawRay(comp.transform.position, direction * velocity * 5, Color.red);
-                }
-            };
+                comp.transform.position += direction * speed;
+            })
+            .AddTo(comp);
         }
     }
 }

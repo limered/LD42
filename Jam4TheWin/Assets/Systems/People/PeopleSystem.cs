@@ -16,18 +16,18 @@ namespace Systems.People
     {
         public override void Register(PersonComponent comp)
         {
-            var moveComp = comp.GetComponent<TargetedMovementComponent>();
+            var targetComp = comp.GetComponent<TargetMutator>();
 
             Observable.Interval(TimeSpan.FromSeconds(10))
                 .StartWith(0)
-                .Subscribe(_ => GoToNextLocation(comp, moveComp))
+                .Subscribe(_ => GoToNextLocation(comp, targetComp))
                 .AddTo(comp);
         }
 
-        private void GoToNextLocation(PersonComponent comp, TargetedMovementComponent moveComp)
+        private void GoToNextLocation(PersonComponent comp, TargetMutator targetComp)
         {
             var spots = GameObject.FindGameObjectsWithTag("gathering spot");
-            if (spots.Length > 0) moveComp.Target = spots[UnityEngine.Random.Range(0, spots.Length)];
+            if (spots.Length > 0) targetComp.Target = spots[UnityEngine.Random.Range(0, spots.Length)];
         }
     }
 }

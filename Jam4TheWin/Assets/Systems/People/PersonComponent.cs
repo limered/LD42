@@ -7,10 +7,10 @@ using Systems.Room;
 
 namespace Systems.People
 {
-    [RequireComponent(typeof(TargetedMovementComponent))]
     [RequireComponent(typeof(KeepInsideRoomComponent))]
+    [RequireComponent(typeof(TargetMutator))]
     public class PersonComponent : GameComponent
     {
-        public float Speed = 1;
+        
     }
 }

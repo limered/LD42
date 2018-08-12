@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Systems.Player
 {
-    [RequireComponent(typeof(TargetedMovementComponent))]
+    [RequireComponent(typeof(TargetMutator))]
     public class CatComponent : GameComponent
     {
     }

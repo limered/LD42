@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using SystemBase;
 using System;
+using Systems.Movement;
 
 namespace Systems.Room
 {
-    public class KeepInsideRoomComponent : GameComponent
+    [RequireComponent(typeof(CollisionMutator))]
+    public class KeepInsideRoomComponent : SemanticGameComponent<CollisionMutator>
     {
         [Range(-10, 10)]
-        public float customOffsetToGround = 0f;
+        public float CustomOffsetToGround = 0f;
 
-        public float obstaclePaddig;
-
-        public Func<Vector3, bool> CanMoveInDirection {get; set;}
+        void Reset()
+        {
+            Dependency = GetComponent<CollisionMutator>();
+        }
     }
 }

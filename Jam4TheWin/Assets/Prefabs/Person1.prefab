@@ -23,10 +23,13 @@ GameObject:
   - component: {fileID: 114771164768145472}
   - component: {fileID: 136089877840875232}
   - component: {fileID: 95562559700971724}
-  - component: {fileID: 114659998024235854}
-  - component: {fileID: 114273895027890318}
-  - component: {fileID: 114881441944037864}
   - component: {fileID: 54784991638305390}
+  - component: {fileID: 114513439870817288}
+  - component: {fileID: 114247255614954066}
+  - component: {fileID: 114376278607284040}
+  - component: {fileID: 114808817738109796}
+  - component: {fileID: 114017272422493714}
+  - component: {fileID: 114691339958576262}
   m_Layer: 0
   m_Name: Person1
   m_TagString: Untagged
@@ -80,7 +83,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114273895027890318
+--- !u!114 &114017272422493714
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,8 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5ab7984d7c74059bc11796074627bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
---- !u!114 &114659998024235854
+--- !u!114 &114247255614954066
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,19 +102,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765694995799600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01ce5f5f7ac465e9e5726d1868ddd3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c2194d0dd6654d31804b4397b325cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 50
-  MaxSpeed: 0.2
-  MaxDistance: 5
-  Target: {fileID: 0}
-  IsMoving: 1
-  Accuracy: 0.75
+  ObstaclePaddig: 1
+--- !u!114 &114376278607284040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765694995799600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a23f464afba421ba3edda9233fef25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependency: {fileID: 114247255614954066}
+  CustomOffsetToGround: 0
+--- !u!114 &114513439870817288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765694995799600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76306dfd5efdb4993b8a9e857146c413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementMutators:
+  - {fileID: 114808817738109796}
+  - {fileID: 114691339958576262}
+  - {fileID: 114247255614954066}
+  CanMove: 1
   Direction:
     value: {x: 0, y: 0, z: 0}
-  Distance:
+  Speed:
     value: 0
+--- !u!114 &114691339958576262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765694995799600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cccf12f4066d4aa0bf3b05234a60213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Accuracy: 1
 --- !u!114 &114771164768145472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   only2DRotation: 1
---- !u!114 &114881441944037864
+--- !u!114 &114808817738109796
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,11 +171,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765694995799600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a23f464afba421ba3edda9233fef25, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ceb10e6bdce241bc8f5dbd1da85bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customOffsetToGround: 0
-  obstaclePaddig: 1
+  Acceleration: 5
+  MaxSpeed: 0.2
+  MaxDistance: 10
+  Target: {fileID: 0}
 --- !u!136 &136089877840875232
 CapsuleCollider:
   m_ObjectHideFlags: 1

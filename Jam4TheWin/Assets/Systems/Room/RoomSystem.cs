@@ -39,8 +39,8 @@ namespace Systems.Room
             {
                 var pos = comp.transform.position;
 
-                if (comp.customOffsetToGround == 0f) pos.y = comp.GetComponent<Renderer>().bounds.extents.y / 2f;
-                else pos.y = comp.customOffsetToGround;
+                if (comp.CustomOffsetToGround == 0f) pos.y = comp.GetComponent<Renderer>().bounds.extents.y / 2f;
+                else pos.y = comp.CustomOffsetToGround;
 
                 comp.transform.position = pos;
             })
@@ -58,7 +58,7 @@ namespace Systems.Room
 
 
             //don't go through walls or furniture
-            comp.CanMoveInDirection = dir =>
+            comp.Dependency.CanMoveInDirection = dir =>
             {
                 foreach (var collider in walls.Select(x => x.GetComponent<Collider>()).Concat(furniture.Select(x => x.GetComponent<Collider>())).ToArray())
                 {

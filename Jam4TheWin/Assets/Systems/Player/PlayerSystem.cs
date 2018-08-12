@@ -21,8 +21,8 @@ namespace Systems.Player
         {
             return mouse =>
             {
-                var movement = cat.GetComponent<TargetedMovementComponent>();
-                mouse.MousePressed.Subscribe(b=>movement.IsMoving = b).AddTo(cat);
+                var movement = cat.GetComponent<MovementComponent>();
+                mouse.MousePressed.Subscribe(b=>movement.CanMove = b).AddTo(cat);
             };
         }
 
