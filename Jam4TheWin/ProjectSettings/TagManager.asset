@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - furniture
+  - gathering spot
   layers:
   - Default
   - TransparentFX
