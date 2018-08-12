@@ -4,38 +4,39 @@ using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
 using UniRx;
 using UniRx.Triggers;
+using UnityEngine;
 
 namespace Systems.Player.States
 {
-    public class Full : ICatState
+    public class NeedsLove : ICatState
     {
-        private IDisposable _poopBoxDisposable;
+        private IDisposable _lovingStateDisposable;
 
         public ReadOnlyCollection<Type> ValidNextStates
         {
             get
             {
-                return new ReadOnlyCollection<Type>(new List<Type> { typeof(Pooping) });
+                return new ReadOnlyCollection<Type>(new List<Type>{typeof(Loving), typeof(Hungry)});
             }
         }
 
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext) context;
-            _poopBoxDisposable = ctx.Cat.OnTriggerEnterAsObservable()
-                .Subscribe(CatStartsPooping(ctx));
-
+            // TODO Collider
+            _lovingStateDisposable = ctx.Cat.OnTriggerEnterAsObservable()
+                .Subscribe(CatStartsMakingLove(ctx));
             return true;
         }
 
-        private Action<UnityEngine.Collider> CatStartsPooping(CatStateContext context)
+        private Action<Collider> CatStartsMakingLove(CatStateContext ctx)
         {
-            return coll => context.GoToState(new Pooping());
+            return coll => { ctx.GoToState(new Loving()); };
         }
 
         public void Exit()
         {
-            _poopBoxDisposable.Dispose();
+            _lovingStateDisposable.Dispose();
         }
     }
 }
