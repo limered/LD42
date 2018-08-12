@@ -46,7 +46,7 @@ namespace Systems.People.States
                 {
                     if (collider.GetComponent<LoveColliderComponent>())
                     {
-                        ctx.GoToState(new RunningToCat());
+                        ctx.GoToState(new RunningToCat(collider.transform.parent.gameObject));
                     }
                 })
                 .AddTo(this);
