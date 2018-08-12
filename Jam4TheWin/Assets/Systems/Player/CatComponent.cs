@@ -21,5 +21,7 @@ namespace Systems.Player
         public GameObject LoveCollider;
         public GameObject StinkCollider;
         public GameObject InnerSpaceCollider;
+
+        public CatStateContext CatStateContext;
     }
 }

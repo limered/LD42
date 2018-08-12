@@ -14,7 +14,6 @@ namespace Systems.Player
     public class PlayerSystem : GameSystem<MouseControlComponent, CatComponent>
     {
         private readonly ReactiveProperty<MouseControlComponent> _mouse = new ReactiveProperty<MouseControlComponent>();
-        private CatStateContext _catStateContext;
 
         public override void Register(CatComponent component)
         {
@@ -28,11 +27,11 @@ namespace Systems.Player
             }
 
             var firstState = new Hungry();
-            _catStateContext = new CatStateContext(firstState, component);
-            firstState.Enter(_catStateContext);
+            component.CatStateContext = new CatStateContext(firstState, component);
+            firstState.Enter(component.CatStateContext);
 
-            _catStateContext.CurrentState
-                .Subscribe(CatStateChanged(_catStateContext))
+            component.CatStateContext.CurrentState
+                .Subscribe(CatStateChanged(component.CatStateContext))
                 .AddTo(component);
 
             MessageBroker.Default.Receive<CatGetsHitMessage>()
