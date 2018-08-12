@@ -37,7 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4921946273507576}
   - component: {fileID: 136948354141764398}
-  m_Layer: 10
+  - component: {fileID: 114298254861409532}
+  m_Layer: 15
   m_Name: bowl01
   m_TagString: furniture
   m_Icon: {fileID: 0}
@@ -121,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4918284396848182}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: food01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +225,7 @@ GameObject:
   - component: {fileID: 4668028627480968}
   - component: {fileID: 33385510897167652}
   - component: {fileID: 23821180387779186}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: bowl01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +329,7 @@ GameObject:
   - component: {fileID: 4722921133784426}
   - component: {fileID: 33799128782629240}
   - component: {fileID: 23651953425886722}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: loo01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +345,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4086363361645876}
   - component: {fileID: 65422809313702224}
-  m_Layer: 10
+  - component: {fileID: 114806774304220894}
+  m_Layer: 15
   m_Name: loo01
   m_TagString: furniture
   m_Icon: {fileID: 0}
@@ -378,7 +380,7 @@ GameObject:
   - component: {fileID: 4941415595318488}
   - component: {fileID: 33893530991153378}
   - component: {fileID: 23387467767671794}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: food01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1290,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818043054876556}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.26, z: 0.28}
@@ -1450,6 +1452,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff757e7d3e1d46cd908d3a2fad84cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114298254861409532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1082039466927624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2d76e352d34768ad5be5ec13110090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HungerReduceFactor: 10
 --- !u!114 &114485473109064502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1558,6 +1572,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 736b16a359fbf4e9bb11ac9c3fd8681e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114806774304220894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1818043054876556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f56fb3ea7546f68ffbd8076b12ec07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114823867946816738
@@ -1696,7 +1721,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1082039466927624}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.41
   m_Height: 0.37

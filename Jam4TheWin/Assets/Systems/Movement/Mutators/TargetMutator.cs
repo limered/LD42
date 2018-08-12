@@ -15,9 +15,9 @@ namespace Systems.Movement
         public float MaxDistance;
         public GameObject Target;
 
-        public override void Mutate(Vector3 oldDirection, float oldSpeed, out Vector3 newDirection, out float newSpeed)
+        public override void Mutate(bool canMove, Vector3 oldDirection, float oldSpeed, out Vector3 newDirection, out float newSpeed)
         {
-            if (Target)
+            if (Target && canMove)
             {
                 var targetDirection = transform.position.DirectionTo(Target.transform.position);
                 var speed = Acceleration * (transform.position.DistanceTo(Target.transform.position) / MaxDistance) * Time.deltaTime;
@@ -28,7 +28,7 @@ namespace Systems.Movement
             }
             else 
             {
-                base.Mutate(oldDirection, oldSpeed, out newDirection, out newSpeed);
+                base.Mutate(canMove, oldDirection, oldSpeed, out newDirection, out newSpeed);
             }
         }
     }

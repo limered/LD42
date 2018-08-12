@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55883fcb75cf6a44cb78961253f78d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 20
+  Acceleration: 10
   MaxSpeed: 0.5
   MaxDistance: 5
   Source: {fileID: 0}
@@ -636,7 +636,8 @@ MonoBehaviour:
   MovementMutators:
   - {fileID: 114563054145997052}
   - {fileID: 114228065954729170}
-  CanMove: 0
+  CanMove:
+    value: 0
   Direction:
     value: {x: 0, y: 0, z: 0}
   Speed:

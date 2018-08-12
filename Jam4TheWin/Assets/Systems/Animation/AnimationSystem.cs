@@ -1,15 +1,17 @@
 ﻿using System;
 using SystemBase;
+using Systems.People;
+using Systems.People.States;
 using Systems.Player;
 using Systems.Player.States;
 using UniRx;
+using UnityEngine;
 
 namespace Systems.Animation
 {
-    [GameSystem(typeof(PlayerSystem))]
-    public class AnimationSystem : GameSystem<AnimationComponent, CatComponent>
+    [GameSystem(typeof(PlayerSystem), typeof(PeopleSystem))]
+    public class AnimationSystem : GameSystem<AnimationComponent, CatComponent, PersonComponent>
     {
-        private CatStateContext _catStateContext;
         private IDisposable dispose;
 
         public override void Register(AnimationComponent component)
@@ -30,6 +32,13 @@ namespace Systems.Animation
                 .AddTo(component);
         }
 
+        public override void Register(PersonComponent component)
+        {
+            component.StateContext.CurrentState
+                .Subscribe(state => PeopleStateChanged(state, component))
+                .AddTo(component);
+        }
+
         private void CatStateChanged(ICatState state, CatComponent component)
         {
             var anim = component.GetComponent<AnimationComponent>();
@@ -37,35 +46,60 @@ namespace Systems.Animation
             switch (state.GetType().Name.ToString())
             {
                 case "Eating":
-                    anim.CatAnimator.Play("cat_eating");
+                    anim.CharacterAnimator.Play("cat_eating");
                     anim.BulbAnimator.Play("bulb_eating");
                     dispose = component.Hunger.Subscribe(f => anim.BulbAnimator.SetFloat("Progress", 1 - f / CatComponent.MaxHunger));
                     break;
                 case "Full":
                     dispose.Dispose();
-                    anim.CatAnimator.Play("cat_walking");
+                    anim.CharacterAnimator.Play("cat_walking");
                     anim.BulbAnimator.Play("bulb_full");
                     break;
                 case "Hungry":
                     if(dispose != null)
                         dispose.Dispose();
-                    anim.CatAnimator.Play("cat_walking");
+                    anim.CharacterAnimator.Play("cat_walking");
                     anim.BulbAnimator.Play("bulb_hungry");
                     break;
                 case "NeedsLove":
                     dispose.Dispose();
-                    anim.CatAnimator.Play("cat_walking");
+                    anim.CharacterAnimator.Play("cat_walking");
                     anim.BulbAnimator.Play("bulb_needLove");
                     break;
                 case "Loving":
-                    anim.CatAnimator.Play("cat_petted");
+                    anim.CharacterAnimator.Play("cat_petted");
                     anim.BulbAnimator.Play("bulb_needLove");
                     break;
                 case "Pooping":
-                    anim.CatAnimator.Play("cat_pooping");
+                    anim.CharacterAnimator.Play("cat_pooping");
                     anim.BulbAnimator.Play("bulb_pooping");
                     dispose = component.PoopingTimer.Subscribe(f => anim.BulbAnimator.SetFloat("Progress", 1 - f / CatComponent.MaxPoopingTime));
                     break;
+            }
+        }
+
+        private void PeopleStateChanged(PersonState state, PersonComponent component)
+        {
+            Debug.Log("people state " + state.GetType().Name.ToString());
+            var anim = component.GetComponent<AnimationComponent>();
+            switch (state.GetType().Name.ToString())
+            {
+                case "Angry":
+                    anim.BulbAnimator.Play("bulb_stinky");
+                    break;
+                case "Entering":
+                    anim.BulbAnimator.Play("bulb_music");
+                    break;
+                case "Happy":
+                    anim.BulbAnimator.Play("bulb_hasLove");
+                    break;
+                case "Loving":
+                    anim.BulbAnimator.Play("bulb_hasLove");
+                    break;
+                case "RunToCat":
+                    anim.BulbAnimator.Play("bulb_needLove");
+                    break;
+                    
             }
         }
 
@@ -75,7 +109,7 @@ namespace Systems.Animation
             var anim = m.Cat.GetComponent<AnimationComponent>();
             var lastState = m.Cat.CatStateContext.CurrentState.Value;
             
-            anim.CatAnimator.Play("cat_angry");
+            anim.CharacterAnimator.Play("cat_angry");
             anim.BulbAnimator.Play("bulb_angry");
 
             Observable.Timer(TimeSpan.FromMilliseconds(800))

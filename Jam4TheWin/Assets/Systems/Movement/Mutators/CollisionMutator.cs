@@ -1,6 +1,4 @@
 using System;
-using SystemBase;
-using UniRx;
 using UnityEngine;
 
 namespace Systems.Movement
@@ -11,11 +9,11 @@ namespace Systems.Movement
         public float ObstaclePaddig;
         public Func<Vector3, float, bool> CanMoveInDirection { get; set; }
 
-        public override void Mutate(Vector3 oldDirection, float oldSpeed, out Vector3 newDirection, out float newSpeed)
+        public override void Mutate(bool canMove, Vector3 oldDirection, float oldSpeed, out Vector3 newDirection, out float newSpeed)
         {
             if (CanMoveInDirection != null)
             {
-                if (CanMoveInDirection(oldDirection, oldSpeed+ObstaclePaddig))
+                if (CanMoveInDirection(oldDirection, oldSpeed + ObstaclePaddig))
                 {
                     newDirection = oldDirection;
                     newSpeed = oldSpeed;
@@ -28,8 +26,7 @@ namespace Systems.Movement
             }
             else //if nothing is defined for 'CanMoveInDirection' dont alter anything
             {
-                base.Mutate(oldDirection, oldSpeed, out newDirection, out newSpeed);
-
+                base.Mutate(canMove, oldDirection, oldSpeed, out newDirection, out newSpeed);
             }
         }
     }
