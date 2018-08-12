@@ -118,21 +118,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1941772463828248, guid: 3fa6388c530f2724ea2ecae83c90237c,
     type: 2}
   m_PrefabInternal: {fileID: 734446900}
---- !u!54 &147816197
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 147816196}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &308657650
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,11 +297,6 @@ Prefab:
     - target: {fileID: 4964480430923804, guid: 3fa6388c530f2724ea2ecae83c90237c, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 65231542845617532, guid: 3fa6388c530f2724ea2ecae83c90237c,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa6388c530f2724ea2ecae83c90237c, type: 2}
@@ -573,6 +553,9 @@ GameObject:
   - component: {fileID: 1540065022}
   - component: {fileID: 1540065021}
   - component: {fileID: 1540065020}
+  - component: {fileID: 1540065026}
+  - component: {fileID: 1540065025}
+  - component: {fileID: 1540065024}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -648,3 +631,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1540065024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1540065019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5ab7984d7c74059bc11796074627bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 1
+--- !u!114 &1540065025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1540065019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01ce5f5f7ac465e9e5726d1868ddd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Acceleration: 20
+  MaxSpeed: 0.1
+  MaxDistance: 10
+  Target: {fileID: 147816196}
+  IsMoving: 0
+  Accuracy: 0.8
+  Direction:
+    value: {x: 0, y: 0, z: 0}
+  Distance:
+    value: 0
+--- !u!114 &1540065026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1540065019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a23f464afba421ba3edda9233fef25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customOffsetToGround: 0
+  obstaclePaddig: 0
