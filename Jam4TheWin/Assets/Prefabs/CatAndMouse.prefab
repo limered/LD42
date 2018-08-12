@@ -563,6 +563,7 @@ MonoBehaviour:
   LoveCollider: {fileID: 1665701487988516}
   StinkCollider: {fileID: 1382263278598962}
   InnerSpaceCollider: {fileID: 1740212211888550}
+  RunAwayMutatorTemplate: {fileID: 114948618744809252}
 --- !u!114 &114735168476268126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,6 +603,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36be68237df1704eb2a9416791b7b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114948618744809252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1941772463828248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55883fcb75cf6a44cb78961253f78d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Acceleration: 20
+  MaxSpeed: 0.5
+  MaxDistance: 5
+  Source: {fileID: 0}
 --- !u!114 &114957247482388072
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,7 +6,7 @@ using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using Utils.Math;
+using Object = UnityEngine.Object;
 
 namespace Systems.Player
 {
@@ -41,9 +41,25 @@ namespace Systems.Player
 
         private void CatHit(CatGetsHitMessage m)
         {
-            var direction = m.Collider.transform.position.DirectionTo(m.Cat.transform.position);
-            var velocity = m.Cat.HitJumpForce * Time.deltaTime;
-            m.Cat.transform.position += direction * velocity;
+            var targetM = m.Cat.GetComponent<TargetMutator>();
+            var target = targetM.Target;
+            var movement = m.Cat.GetComponent<MovementComponent>();
+            var mutator = m.Cat.gameObject.AddComponent<RunAwayMutator>();
+            var template = m.Cat.RunAwayMutatorTemplate;
+
+            mutator.Acceleration = template.Acceleration;
+            mutator.MaxDistance = template.MaxDistance;
+            mutator.MaxSpeed = template.MaxSpeed;
+            mutator.Source = m.Collider.gameObject;
+            movement.MovementMutators.Add(mutator);
+
+            Observable.Timer(TimeSpan.FromMilliseconds(50))
+                .Subscribe(t=>
+                {
+                    movement.MovementMutators.Remove(mutator);
+                    Object.Destroy(mutator);
+                    targetM.Target = target;
+                });
         }
 
         private static Action<ICatState> CatStateChanged(CatStateContext ctx)
