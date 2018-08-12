@@ -4,17 +4,18 @@ using SystemBase.StateMachineBase;
 
 namespace Systems.People.States
 {
-    public class Loving : IPersonState
+    public class Loving : PersonState
     {
-        public ReadOnlyCollection<Type> ValidNextStates { get; private set; }
-        public bool Enter<TState>(IStateContext<TState> context) where TState : IState
+        public override ReadOnlyCollection<Type> ValidNextStates
         {
-            throw new NotImplementedException();
+            get
+            {
+                return null;
+            }
         }
-
-        public void Exit()
+        public override bool Enter<TState>(IStateContext<TState> context) 
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

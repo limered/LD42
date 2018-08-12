@@ -11,38 +11,32 @@ using Object = UnityEngine.Object;
 
 namespace Systems.People.States
 {
-    public class Entering : IPersonState
+    public class Entering : PersonState
     {
-        private IDisposable _reachedStartSpot;
-
-        public ReadOnlyCollection<Type> ValidNextStates
+        public override ReadOnlyCollection<Type> ValidNextStates
         {
             get
             {
-                return new ReadOnlyCollection<Type>(new List<Type> { typeof(Idle) });
+                return new ReadOnlyCollection<Type>(new [] { typeof(Idle) });
             }
         }
 
-        public bool Enter<TState>(IStateContext<TState> context) where TState : IState
+        public override bool Enter<TState>(IStateContext<TState> context)
         {
-            var ctx = (PeapoleStateContext)context;
+            var ctx = (PersonStateContext)context;
             var spots = Object.FindObjectsOfType<GatheringSpotComponent>();
             if (spots.Any())
             {
                 var movement = ctx.Person.GetComponent<TargetMutator>();
                 movement.Target = spots.RandomElement().gameObject;
 
-                _reachedStartSpot = ctx.Person.OnTriggerEnterAsObservable()
+                ctx.Person.OnTriggerEnterAsObservable()
                     .Where(coll => coll.gameObject == movement.Target)
-                    .Subscribe(coll => ctx.GoToState(new Idle()));
+                    .Subscribe(coll => ctx.GoToState(new Idle()))
+                    .AddTo(this);
             }
 
             return true;
-        }
-
-        public void Exit()
-        {
-            _reachedStartSpot.Dispose();
         }
     }
 }

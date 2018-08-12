@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4419942786767240}
   - component: {fileID: 33999591908995956}
   - component: {fileID: 23981484105029296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: loo01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,9 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4235566425426360}
   - component: {fileID: 65937326340892410}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: loo01
-  m_TagString: Untagged
+  m_TagString: furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
