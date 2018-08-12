@@ -6,6 +6,7 @@ using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils.Math;
 
 namespace Systems.Player
 {
@@ -25,6 +26,17 @@ namespace Systems.Player
             _catStateContext.CurrentState
                 .Subscribe(CatStateChanged(_catStateContext))
                 .AddTo(component);
+
+            MessageBroker.Default.Receive<CatGetsHitMessage>()
+                .Subscribe(CatHit)
+                .AddTo(component);
+        }
+
+        private void CatHit(CatGetsHitMessage m)
+        {
+            var direction = m.Collider.transform.position.DirectionTo(m.Cat.transform.position);
+            var velocity = m.Cat.HitJumpForce * Time.deltaTime;
+            m.Cat.transform.position += direction * velocity;
         }
 
         private static Action<ICatState> CatStateChanged(CatStateContext ctx)

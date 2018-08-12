@@ -25,6 +25,9 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext)context;
+
+            ctx.Cat.StinkCollider.SetActive(false);
+
             ctx.Cat.LoveTimer.Value = CatComponent.MaxLoveTimer;
             _loveStayDisposable = ctx.Cat.OnTriggerStayAsObservable()
                 .Where(coll => coll.GetComponent<PersonComponent>())

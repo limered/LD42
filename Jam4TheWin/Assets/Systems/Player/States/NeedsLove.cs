@@ -24,6 +24,10 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext) context;
+
+            ctx.Cat.StinkCollider.SetActive(true);
+            ctx.Cat.InnerSpaceCollider.SetActive(false);
+
             _lovingStateDisposable = ctx.Cat.OnTriggerEnterAsObservable()
                 .Where(coll=>coll.GetComponent<PersonComponent>())
                 .Subscribe(CatStartsMakingLove(ctx));

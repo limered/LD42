@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
 using Systems.Interactables;
-using Systems.Movement;
+using Systems.People;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -25,12 +25,26 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext)context;
+
+            ctx.Cat.StinkCollider.SetActive(false);
+            ctx.Cat.InnerSpaceCollider.SetActive(true);
+
             _catEatingDisposable = ctx.Cat.OnTriggerEnterAsObservable()
                 .Where(IsFood())
                 .Subscribe(CatStartsEating(ctx));
 
+            ctx.Cat.InnerSpaceCollider.OnTriggerEnterAsObservable()
+                .Where(coll => coll.GetComponent<PersonComponent>())
+                .Subscribe(GetHit(ctx.Cat));
+
             return true;
         }
+
+        private Action<Collider> GetHit(CatComponent cat)
+        {
+            return coll => MessageBroker.Default.Publish(new CatGetsHitMessage{Cat = cat, Collider = coll});
+        }
+
         private static Func<Collider, bool> IsFood()
         {
             return coll => coll.GetComponent<FoodComponent>();

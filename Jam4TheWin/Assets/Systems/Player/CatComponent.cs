@@ -15,5 +15,11 @@ namespace Systems.Player
         public FloatReactiveProperty Hunger = new FloatReactiveProperty(MaxHunger);
         public FloatReactiveProperty PoopingTimer = new FloatReactiveProperty(MaxPoopingTime);
         public FloatReactiveProperty LoveTimer = new FloatReactiveProperty(MaxLoveTimer);
+
+        public float HitJumpForce;
+
+        public GameObject LoveCollider;
+        public GameObject StinkCollider;
+        public GameObject InnerSpaceCollider;
     }
 }
