@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.People;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -26,9 +27,11 @@ namespace Systems.Player.States
             var ctx = (CatStateContext)context;
             ctx.Cat.LoveTimer.Value = CatComponent.MaxLoveTimer;
             _loveStayDisposable = ctx.Cat.OnTriggerStayAsObservable()
+                .Where(coll => coll.GetComponent<PersonComponent>())
                 .Subscribe(CatIsLoving(ctx));
 
             _lovingStopsDisposable = ctx.Cat.OnTriggerExitAsObservable()
+                .Where(coll => coll.GetComponent<PersonComponent>())
                 .Subscribe(CatStopsLoving(ctx));
 
             return true;
@@ -54,6 +57,7 @@ namespace Systems.Player.States
         public void Exit()
         {
             _loveStayDisposable.Dispose();
+            _lovingStopsDisposable.Dispose();
         }
     }
 }

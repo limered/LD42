@@ -18,7 +18,9 @@ namespace Systems.Player
         public override void Register(CatComponent component)
         {
             _mouse.Skip(1).Subscribe(RegisterCatComponent(component)).AddTo(component);
-            _catStateContext = new CatStateContext(new Idle(), component);
+            var firstState = new Hungry();
+            _catStateContext = new CatStateContext(firstState, component);
+            firstState.Enter(_catStateContext);
 
             _catStateContext.CurrentState
                 .Subscribe(CatStateChanged(_catStateContext))

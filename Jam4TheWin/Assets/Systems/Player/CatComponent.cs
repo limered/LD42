@@ -11,7 +11,6 @@ namespace Systems.Player
         public static float MaxHunger = 100;
         public static float MaxLoveTimer = 0.3f;
         public static float MaxPoopingTime = 2;
-        public float HungerReduceFactor;
 
         public FloatReactiveProperty Hunger = new FloatReactiveProperty(MaxHunger);
         public FloatReactiveProperty PoopingTimer = new FloatReactiveProperty(MaxPoopingTime);

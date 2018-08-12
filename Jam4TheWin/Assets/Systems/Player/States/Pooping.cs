@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.Interactables;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -27,9 +28,11 @@ namespace Systems.Player.States
 
             ctx.Cat.PoopingTimer.Value = CatComponent.MaxPoopingTime;
             _poopintDisposable = ctx.Cat.OnTriggerStayAsObservable()
+                .Where(coll => coll.GetComponent<LooComponent>())
                 .Subscribe(CatPoops(ctx));
 
             _poopingStopDisposable = ctx.Cat.OnTriggerExitAsObservable()
+                .Where(coll => coll.GetComponent<LooComponent>())
                 .Subscribe(CatStopsPooping(ctx));
 
             return true;

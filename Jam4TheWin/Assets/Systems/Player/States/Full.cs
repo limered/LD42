@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.Interactables;
 using UniRx;
 using UniRx.Triggers;
 
@@ -22,7 +23,10 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext) context;
+            ctx.Cat.Hunger.Value = CatComponent.MaxHunger;
+
             _poopBoxDisposable = ctx.Cat.OnTriggerEnterAsObservable()
+                .Where(coll=>coll.GetComponent<LooComponent>())
                 .Subscribe(CatStartsPooping(ctx));
 
             return true;

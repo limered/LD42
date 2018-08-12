@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.Interactables;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -25,19 +26,27 @@ namespace Systems.Player.States
         {
             var ctx = (CatStateContext) context;
             _catTriggerExitDisposable = ctx.Cat.OnTriggerExitAsObservable()
+                .Where(IsFood())
                 .Subscribe(CatStopsEating(ctx));
 
             _catUpdateDisposable = ctx.Cat.OnTriggerStayAsObservable()
+                .Where(IsFood())
                 .Subscribe(CatFeeding(ctx));
 
             return true;
+        }
+
+        private static Func<Collider, bool> IsFood()
+        {
+            return coll => coll.GetComponent<FoodComponent>();
         }
 
         private Action<Collider> CatFeeding(CatStateContext ctx)
         {
             return coll =>
             {
-                ctx.Cat.Hunger.Value -= ctx.Cat.HungerReduceFactor * Time.deltaTime;
+                var food = coll.GetComponent<FoodComponent>();
+                ctx.Cat.Hunger.Value -= food.HungerReduceFactor * Time.deltaTime;
                 if (ctx.Cat.Hunger.Value < 0)
                 {
                     ctx.GoToState(new Full());

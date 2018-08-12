@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.People;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -23,8 +24,8 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext) context;
-            // TODO Collider
             _lovingStateDisposable = ctx.Cat.OnTriggerEnterAsObservable()
+                .Where(coll=>coll.GetComponent<PersonComponent>())
                 .Subscribe(CatStartsMakingLove(ctx));
             return true;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.Interactables;
 using Systems.Movement;
 using UniRx;
 using UniRx.Triggers;
@@ -24,12 +25,15 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext)context;
-            ctx.Cat.Hunger.Value = CatComponent.MaxHunger;
-
             _catEatingDisposable = ctx.Cat.OnTriggerEnterAsObservable()
+                .Where(IsFood())
                 .Subscribe(CatStartsEating(ctx));
 
             return true;
+        }
+        private static Func<Collider, bool> IsFood()
+        {
+            return coll => coll.GetComponent<FoodComponent>();
         }
 
         private Action<Collider> CatStartsEating(CatStateContext context)
