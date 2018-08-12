@@ -13,6 +13,7 @@ namespace Systems.Player.States
     public class Hungry : ICatState
     {
         private IDisposable _catEatingDisposable;
+        private IDisposable _enemyHitDisposable;
 
         public ReadOnlyCollection<Type> ValidNextStates
         {
@@ -33,7 +34,7 @@ namespace Systems.Player.States
                 .Where(IsFood())
                 .Subscribe(CatStartsEating(ctx));
 
-            ctx.Cat.InnerSpaceCollider.OnTriggerEnterAsObservable()
+            _enemyHitDisposable = ctx.Cat.InnerSpaceCollider.OnTriggerEnterAsObservable()
                 .Where(coll => coll.GetComponent<PersonComponent>())
                 .Subscribe(GetHit(ctx.Cat));
 
@@ -58,6 +59,7 @@ namespace Systems.Player.States
         public void Exit()
         {
             _catEatingDisposable.Dispose();
+            _enemyHitDisposable.Dispose();
         }
     }
 }
