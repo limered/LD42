@@ -9,6 +9,6 @@ namespace Systems.People
     [RequireComponent(typeof(TargetMutator))]
     public class PersonComponent : GameComponent
     {
-        public PeapoleStateContext StateContext;
+        public PersonStateContext StateContext;
     }
 }

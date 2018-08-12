@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4669236868623468}
   - component: {fileID: 33134426099229808}
   - component: {fileID: 23698455231869740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bowl01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,9 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4618426318643464}
   - component: {fileID: 136669753998191936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bowl01
-  m_TagString: Untagged
+  m_TagString: furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4140203838333660}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4207207362859152}
   - component: {fileID: 33861570324773998}
   - component: {fileID: 23030872824002954}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: food01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

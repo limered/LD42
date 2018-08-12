@@ -1,5 +1,6 @@
 ﻿using System;
 using SystemBase;
+using Systems.Room;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Systems.Control
 
         private static Action<Unit> CheckMousePorition(MouseControlComponent component)
         {
+            var floorLayer = LayerMask.NameToLayer("Floor");
+
             return u =>
             {
                 if(Input.GetMouseButtonDown((int) MouseButton.LeftMouse))
@@ -34,7 +37,7 @@ namespace Systems.Control
 
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;
+                if (!Physics.Raycast(ray, out hit, Mathf.Infinity, 1<<floorLayer)) return;
 
                 component.MousePosition.Value = new Vector3(hit.point.x, 0, hit.point.z);
             };

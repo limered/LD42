@@ -3,10 +3,10 @@ using Systems.People.States;
 
 namespace Systems.People
 {
-    public class PeapoleStateContext : StateContextBase<IPersonState>
+    public class PersonStateContext : StateContextBase<PersonState>
     {
         public PersonComponent Person { get; private set; }
-        public PeapoleStateContext(IPersonState initialState, PersonComponent p) : base(initialState)
+        public PersonStateContext(PersonState initialState, PersonComponent p) : base(initialState)
         {
             Person = p;
         }

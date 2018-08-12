@@ -57,21 +57,16 @@ namespace Systems.Room
             .AddTo(comp);
 
 
+            var collisionMask = LayerMask.GetMask("Wall","Furniture", "Floor");
+
             //don't go through walls or furniture
-            comp.Dependency.CanMoveInDirection = dir =>
+            comp.Dependency.CanMoveInDirection = (dir, distance) =>
             {
-                foreach (var collider in walls.Select(x => x.GetComponent<Collider>()).Concat(furniture.Select(x => x.GetComponent<Collider>())).ToArray())
-                {
-                    float intersectionDistance;
-                    if (collider.bounds.IntersectRay(new Ray(personCollider.transform.position, dir), out intersectionDistance))
-                    {
-                        if (intersectionDistance <= dir.magnitude)
-                        {
-                            return false;
-                        }
-                    }
-                }
-                return true;
+                RaycastHit hit;
+                
+                var obscured = Physics.Raycast(new Ray(personCollider.transform.position, dir), out hit, distance, comp.Dependency.CollidesWith);
+                Debug.DrawRay(personCollider.transform.position, dir * distance, obscured ? Color.red : Color.green);
+                return !obscured;
             };
         }
 

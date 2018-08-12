@@ -2,7 +2,7 @@
 
 namespace Systems.People.States
 {
-    public interface IPersonState : IState
+    public abstract class PersonState : DisposableState
     {
     }
 }

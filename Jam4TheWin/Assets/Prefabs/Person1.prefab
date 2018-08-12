@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 114808817738109796}
   - component: {fileID: 114017272422493714}
   - component: {fileID: 114691339958576262}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Person1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2194d0dd6654d31804b4397b325cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollidesWith:
+    serializedVersion: 2
+    m_Bits: 1536
   ObstaclePaddig: 1
 --- !u!114 &114376278607284040
 MonoBehaviour:
@@ -150,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cccf12f4066d4aa0bf3b05234a60213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Accuracy: 1
+  Accuracy: 0.75
+  Interval: 0.1
 --- !u!114 &114771164768145472
 MonoBehaviour:
   m_ObjectHideFlags: 1
