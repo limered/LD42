@@ -14,7 +14,7 @@ namespace Systems.People
     {
         public override void Register(PersonComponent comp)
         {
-            var firstState = new Entering();
+            var firstState = new Idle();
             comp.StateContext = new PersonStateContext(firstState, comp);
             firstState.Enter(comp.StateContext);
 
