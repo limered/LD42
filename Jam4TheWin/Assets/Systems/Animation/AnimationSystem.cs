@@ -130,28 +130,28 @@ namespace Systems.Animation
             switch (state.GetType().Name)
             {
                 case "Angry":
-                    anim.CharacterAnimator.Play("person1_angry");
+                    anim.CharacterAnimator.Play("person_angry");
                     anim.BulbAnimator.Play("bulb_stinky");
                     break;
 
                 case "Entering":
                 case "Idle":
-                    anim.CharacterAnimator.Play("person1_standing");
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_music");
                     break;
 
                 case "Happy":
-                    anim.CharacterAnimator.Play("person1_standing");
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_hasLove");
                     break;
 
                 case "Loving":
-                    anim.CharacterAnimator.Play("person1_standing");
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_hasLove");
                     break;
 
                 case "RunningToCat":
-                    anim.CharacterAnimator.Play("person1_standing");
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_needLove");
                     break;
             }
