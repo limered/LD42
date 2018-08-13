@@ -11,6 +11,24 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1291027967684290}
   m_IsPrefabAsset: 1
+--- !u!1 &1183356181537724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4279998076181582}
+  - component: {fileID: 82836434015710108}
+  - component: {fileID: 114160938048989224}
+  - component: {fileID: 114131753169793734}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1291027967684290
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,31 +45,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1568512192538400
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4611435834599794}
-  - component: {fileID: 82112350512043994}
-  - component: {fileID: 82022353286773450}
-  - component: {fileID: 114335428543223060}
-  - component: {fileID: 114727980164938024}
-  m_Layer: 0
-  m_Name: Audio
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4611435834599794
+--- !u!4 &4279998076181582
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568512192538400}
+  m_GameObject: {fileID: 1183356181537724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -69,16 +68,16 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4611435834599794}
+  - {fileID: 4279998076181582}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82022353286773450
+--- !u!82 &82836434015710108
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568512192538400}
+  m_GameObject: {fileID: 1183356181537724}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -168,113 +167,67 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &82112350512043994
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568512192538400}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &114335428543223060
+--- !u!114 &114131753169793734
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568512192538400}
+  m_GameObject: {fileID: 1183356181537724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebb9d2c5c5e74a35aabb517ffdd080a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPitchChange: 0.25
+  Sounds:
+  - Name: cat_eat
+    File: {fileID: 8300000, guid: 11218b8dc52bd484b951c1b9e4f44779, type: 3}
+    Volume: 1
+  - Name: cat_hiss
+    File: {fileID: 8300000, guid: 6c74402c85a1143f48c38cedd01be8db, type: 3}
+    Volume: 1
+  - Name: cat_meow_1
+    File: {fileID: 8300000, guid: 27561e45f1e254b568428d3934b690c1, type: 3}
+    Volume: 1
+  - Name: cat_meow_2
+    File: {fileID: 8300000, guid: ef8bbcaa4614f40a7a91c03b5d91e615, type: 3}
+    Volume: 1
+  - Name: cat_meow_3
+    File: {fileID: 8300000, guid: 59b9d76e758414bf2a06da1211bf28bf, type: 3}
+    Volume: 1
+  - Name: cat_meow_4
+    File: {fileID: 8300000, guid: 4b8f2d24863c6423eb72630c2ca8531d, type: 3}
+    Volume: 1
+  - Name: cat_poop
+    File: {fileID: 8300000, guid: 07371b42cdf83488bb3b5f22113be96a, type: 3}
+    Volume: 1
+  - Name: cat_purr
+    File: {fileID: 8300000, guid: c36eb61a768fc4d52b4d6b81a3a40a88, type: 3}
+    Volume: 1
+  - Name: people_aww
+    File: {fileID: 8300000, guid: dfa6f4b2d1cb74efeae1256012e24cd4, type: 3}
+    Volume: 1
+  - Name: people_yuck
+    File: {fileID: 8300000, guid: ba2ba730338624c57a7c7e747470c4f2, type: 3}
+    Volume: 1
+  - Name: door_close
+    File: {fileID: 8300000, guid: 565faeb8ee0c74895bc538f4a1723834, type: 3}
+    Volume: 1
+  - Name: people_yeah
+    File: {fileID: 8300000, guid: 9b7890df903004ac9b991f8c4f46761a, type: 3}
+    Volume: 1
+--- !u!114 &114160938048989224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183356181537724}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2ad3a926a5da4c8a89b85645f599874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmbientAudioSource: {fileID: 82022353286773450}
+  AmbientAudioSource: {fileID: 82836434015710108}
 --- !u!114 &114450142252470878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,40 +241,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMainFrameCallback:
     value: 
---- !u!114 &114727980164938024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568512192538400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebb9d2c5c5e74a35aabb517ffdd080a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SoundSource: {fileID: 82112350512043994}
-  Sounds:
-  - Name: cat_eat
-    File: {fileID: 8300000, guid: 11218b8dc52bd484b951c1b9e4f44779, type: 3}
-  - Name: cat_hiss
-    File: {fileID: 8300000, guid: 6c74402c85a1143f48c38cedd01be8db, type: 3}
-  - Name: cat_meow_1
-    File: {fileID: 8300000, guid: 27561e45f1e254b568428d3934b690c1, type: 3}
-  - Name: cat_meow_2
-    File: {fileID: 8300000, guid: ef8bbcaa4614f40a7a91c03b5d91e615, type: 3}
-  - Name: cat_meow_3
-    File: {fileID: 8300000, guid: 59b9d76e758414bf2a06da1211bf28bf, type: 3}
-  - Name: cat_meow_4
-    File: {fileID: 8300000, guid: 4b8f2d24863c6423eb72630c2ca8531d, type: 3}
-  - Name: cat_poop
-    File: {fileID: 8300000, guid: 07371b42cdf83488bb3b5f22113be96a, type: 3}
-  - Name: cat_purr
-    File: {fileID: 8300000, guid: c36eb61a768fc4d52b4d6b81a3a40a88, type: 3}
-  - Name: people_aww
-    File: {fileID: 8300000, guid: dfa6f4b2d1cb74efeae1256012e24cd4, type: 3}
-  - Name: people_yuck
-    File: {fileID: 8300000, guid: ba2ba730338624c57a7c7e747470c4f2, type: 3}
-  - Name: door_close
-    File: {fileID: 8300000, guid: 565faeb8ee0c74895bc538f4a1723834, type: 3}
-  - Name: people_yeah
-    File: {fileID: 8300000, guid: d5a5105e0a18248fdb946d85d6d24687, type: 3}
