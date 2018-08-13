@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Linq;
 using SystemBase;
-using UniRx.Triggers;
 using UniRx;
 using UnityEngine;
-using Utils.Plugins;
-using System.Linq;
-using System;
+using Utils.DotNet;
 
 namespace Systems.Room
 {
@@ -18,7 +15,11 @@ namespace Systems.Room
             comp.Interval
             .SelectMany(x => Observable.Interval(TimeSpan.FromSeconds(comp.Interval.Value)).TakeUntil(comp.Interval.Skip(1).Take(1)))
             .Where(_ => comp.Spawns != null)
-            .Subscribe(_ => GameObject.Instantiate(comp.Spawns, comp.transform.position, Quaternion.identity))
+            .Subscribe(_ =>
+                {
+                    var spawn = comp.Spawns.RandomElement();
+                    GameObject.Instantiate(spawn, comp.transform.position, Quaternion.identity);
+                })
             .AddTo(comp);
         }
     }

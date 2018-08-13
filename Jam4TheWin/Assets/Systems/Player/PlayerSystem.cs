@@ -6,7 +6,6 @@ using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Systems.Player
 {
@@ -26,7 +25,7 @@ namespace Systems.Player
                 _mouse.Skip(1).Subscribe(RegisterCatComponent(component)).AddTo(component);
             }
 
-            var firstState = new Hungry();
+            var firstState = new Idle();
             component.CatStateContext = new CatStateContext(firstState, component);
             firstState.Enter(component.CatStateContext);
 
@@ -60,7 +59,7 @@ namespace Systems.Player
             return mouse =>
             {
                 var movement = cat.GetComponent<MovementComponent>();
-                mouse.MousePressed.Subscribe(b=>movement.CanMove.Value = b).AddTo(cat);
+                mouse.MousePressed.Subscribe(b => movement.CanMove.Value = b).AddTo(cat);
             };
         }
 
