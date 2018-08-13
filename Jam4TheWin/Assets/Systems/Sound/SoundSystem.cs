@@ -4,6 +4,7 @@ using System.Linq;
 using System.Sound.Messages;
 using SystemBase;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Systems.Sound
@@ -33,7 +34,16 @@ namespace Systems.Sound
                 .Subscribe(soundName =>
                 {
                     if (comp.Sounds.Any(x => x.Name == soundName))
-                        comp.SoundSource.PlayOneShot(comp.Sounds.First(x => x.Name == soundName).File);
+                    {
+                        var sound = comp.Sounds.First(x => x.Name == soundName);
+                        var source = comp.gameObject.AddComponent<AudioSource>();
+                        source.pitch = 1 + ((UnityEngine.Random.value - 0.5f)*2f * comp.MaxPitchChange);
+                        source.PlayOneShot(sound.File, sound.Volume);
+                        Observable
+                            .Interval(TimeSpan.FromSeconds(1))
+                            .TakeWhile(_ => source.isPlaying)
+                            .Subscribe(_ => {}, () => GameObject.Destroy(source));
+                    }
                     else
                         Debug.LogWarning("sound not found: " + soundName);
                 })

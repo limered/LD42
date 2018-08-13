@@ -7,7 +7,8 @@ namespace Systems.Sound
 {
     public class SoundComponent : GameComponent
     {
-        public AudioSource SoundSource;
+        [Range(0f, 2f)]
+        public float MaxPitchChange = 0.25f;
         public SoundFile[] Sounds;
     }
 
@@ -16,5 +17,8 @@ namespace Systems.Sound
     {
         public string Name;
         public AudioClip File;
+
+        [Range(0f, 1f)]
+        public float Volume;
     }
 }
