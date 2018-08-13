@@ -8,6 +8,7 @@ using UnityEngine;
 using Systems.Room;
 using Systems.Score;
 using Utils.Plugins;
+using Systems.Sound;
 
 namespace Systems.People.States
 {
@@ -35,6 +36,7 @@ namespace Systems.People.States
                 .Subscribe(collider =>
                 {
                     MessageBroker.Default.Publish(new MessagePersonLoved());
+                    "door_close".Play();
                     GameObject.Destroy(ctx.Person.gameObject);
                 })
                 .AddTo(this);

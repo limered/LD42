@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
 using Systems.Interactables;
 using Systems.People;
+using Systems.Sound;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext) context;
+
             _catTriggerExitDisposable = ctx.Cat.OnTriggerExitAsObservable()
                 .Where(IsFood())
                 .Subscribe(CatStopsEating(ctx));
