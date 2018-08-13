@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using SystemBase;
+using Systems.GameState;
 using Utils;
 
 namespace Systems
 {
     public class Game : GameBase
     {
-        // Why habe this? Maybe Pause Game etc...
+        public BasicGameStateContext GameStateMachine;
         private void Awake()
         {
             IoC.RegisterSingleton(this);
@@ -25,6 +26,10 @@ namespace Systems
             #endregion System Registration
 
             Init();
+
+            var start = new StartScreen();
+            GameStateMachine = new BasicGameStateContext(start);
+            start.Enter(GameStateMachine);
         }
     }
 }
