@@ -6,6 +6,7 @@ using Systems.People.States;
 using Systems.Player;
 using Systems.Player.States;
 using UniRx;
+using UnityEngine;
 
 namespace Systems.Animation
 {
@@ -72,26 +73,47 @@ namespace Systems.Animation
 
                 case "Full":
                     _dispose.Dispose();
-                    anim.CharacterAnimator.Play("cat_standing");
+                    if (component.GetComponent<MovementComponent>().CanMove.Value)
+                    {
+                        anim.CharacterAnimator.Play("cat_walking");
+                    }
+                    else
+                    {
+                        anim.CharacterAnimator.Play("cat_standing");
+                    }
                     anim.BulbAnimator.Play("bulb_full");
                     break;
 
                 case "Hungry":
                     if (_dispose != null) { _dispose.Dispose(); }
-
-                    anim.CharacterAnimator.Play("cat_standing");
+                    if (component.GetComponent<MovementComponent>().CanMove.Value)
+                    {
+                        anim.CharacterAnimator.Play("cat_walking");
+                    }
+                    else
+                    {
+                        anim.CharacterAnimator.Play("cat_standing");
+                    }
                     anim.BulbAnimator.Play("bulb_hungry");
                     break;
 
                 case "NeedsLove":
                     _dispose.Dispose();
-                    anim.CharacterAnimator.Play("cat_standing");
-                    anim.BulbAnimator.Play("bulb_needLove");
+                    if (component.GetComponent<MovementComponent>().CanMove.Value)
+                    {
+                        anim.CharacterAnimator.Play("cat_walking");
+                    }
+                    else {
+                        anim.CharacterAnimator.Play("cat_standing");
+                    }
+
+                    var timer = component.InLoveStarted + CatComponent.MaxInLoveTime - Time.realtimeSinceStartup;
+                    _dispose = component.LoveTimer.Subscribe(f => anim.BulbAnimator.SetFloat("Progress", timer / CatComponent.MaxInLoveTime));
+                    anim.BulbAnimator.Play("bulb_isLoving");
                     break;
 
                 case "Loving":
                     anim.CharacterAnimator.Play("cat_petted");
-                    anim.BulbAnimator.Play("bulb_needLove");
                     break;
 
                 case "Pooping":
