@@ -183,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 1017682741687396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 20, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 4711767500342636}
   m_RootOrder: 2
@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 1042557496603692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children: []
   m_Father: {fileID: 4711767500342636}
   m_RootOrder: 1
@@ -524,7 +524,7 @@ MonoBehaviour:
     value: 4
   LoveTimer:
     value: 3
-  AngryTime: 1
+  AngryTime: 0.4
   LoveCollider: {fileID: 1017682741687396}
   StinkCollider: {fileID: 1042557496603692}
   InnerSpaceCollider: {fileID: 1795608187471590}
