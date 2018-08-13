@@ -1,33 +1,26 @@
 ﻿using System;
 using SystemBase;
 using Systems.Control;
+using Systems.GameState;
 using Systems.Movement;
 using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils;
+using Utils.Plugins;
 
 namespace Systems.Player
 {
     [GameSystem(typeof(MouseTargetSystem), typeof(MovementSystem))]
-    public class PlayerSystem : GameSystem<MouseControlComponent, CatComponent>
+    public class PlayerSystem : GameSystem<MouseControlComponent, CatComponent, PlayerSpawner>
     {
         private readonly ReactiveProperty<MouseControlComponent> _mouse = new ReactiveProperty<MouseControlComponent>();
 
         public override void Register(CatComponent component)
         {
-            if (_mouse.HasValue)
-            {
-                _mouse.Subscribe(RegisterCatComponent(component)).AddTo(component);
-            }
-            else
-            {
-                _mouse.Skip(1).Subscribe(RegisterCatComponent(component)).AddTo(component);
-            }
 
-            var firstState = new Idle();
-            component.CatStateContext = new CatStateContext(firstState, component);
-            firstState.Enter(component.CatStateContext);
+            _mouse.WhereNotNull().Subscribe(RegisterCatComponent(component)).AddTo(component);
 
             component.CatStateContext.CurrentState
                 .Subscribe(CatStateChanged(component.CatStateContext))
@@ -75,6 +68,31 @@ namespace Systems.Player
         private void UpdateMouseTargetPosition(MouseControlComponent component)
         {
             component.transform.position = component.MousePosition.Value;
+        }
+
+        public override void Register(PlayerSpawner component)
+        {
+            IoC.Game.GameStateMachine.CurrentState
+                .Where(s => s is Running)
+                .Select(s=>component)
+                .Subscribe(SpawnPlayer)
+                .AddTo(component);
+        }
+
+        private void SpawnPlayer(PlayerSpawner component)
+        {
+            var player = GameObject.Instantiate(component.PlayerPrefab, component.transform);
+            player.GetComponent<TargetMutator>().Target = component.Mouse;
+            var cat = player.GetComponent<CatComponent>();
+
+            var firstState = new Hungry();
+            cat.CatStateContext = new CatStateContext(firstState, cat);
+            firstState.Enter(cat.CatStateContext);
+
+            IoC.Game.GameStateMachine.CurrentState
+                .Where(s => s is GameOver)
+                .Subscribe(s => GameObject.Destroy(player))
+                .AddTo(player);
         }
     }
 }

@@ -5,6 +5,7 @@ using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils.Plugins;
 using Random = UnityEngine.Random;
 
 namespace Systems.VFX
@@ -16,18 +17,17 @@ namespace Systems.VFX
 
         public override void Register(CameraComponent component)
         {
-            _cat.Skip(1)
+            _cat.WhereNotNull()
                 .Subscribe(SubscribeToCatStateChanged(component))
                 .AddTo(component);
 
             component.UpdateAsObservable()
-                .Subscribe(unit=>AnimateColor(component))
+                .Subscribe(unit => AnimateColor(component))
                 .AddTo(component);
 
             Observable.Interval(TimeSpan.FromSeconds(2))
                 .Subscribe(t => SetNewColor(component))
                 .AddTo(component);
-
         }
 
         private void AnimateColor(CameraComponent cam)
