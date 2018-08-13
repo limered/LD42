@@ -7,12 +7,14 @@ using UniRx;
 using UnityEngine;
 using Systems.Room;
 using Systems.Player;
+using Systems.Score;
+using Utils.Plugins;
 
 namespace Systems.People.States
 {
     public class Angry : PersonState
     {
-        public override ReadOnlyCollection<Type> ValidNextStates { get { return new ReadOnlyCollection<Type>(new Type[]{typeof(Loving)}); } }
+        public override ReadOnlyCollection<Type> ValidNextStates { get { return new ReadOnlyCollection<Type>(new Type[] { typeof(Loving) }); } }
         public override bool Enter<TState>(IStateContext<TState> context)
         {
             var ctx = (PersonStateContext)context;
@@ -23,24 +25,18 @@ namespace Systems.People.States
             //Cat gets really close
             ctx.Person
                 .OnTriggerEnterAsObservable()
-                .Subscribe(collider =>
-                {
-                    if (collider.GetComponent<InnerSpaceColliderComponent>())
-                    {
-                        ctx.GoToState(new Loving());
-                    }
-                })
+                .WaitForFirst(c => c.GetComponent<InnerSpaceColliderComponent>())
+                .Subscribe(_ => ctx.GoToState(new Loving()))
                 .AddTo(this);
 
             //if door is reached -> kill this person
             ctx.Person
                 .OnTriggerEnterAsObservable()
+                .WaitForFirst(c => c.GetComponent<DoorComponent>())
                 .Subscribe(collider =>
                 {
-                    if (collider.GetComponent<DoorComponent>())
-                    {
-                        GameObject.Destroy(ctx.Person.gameObject);
-                    }
+                    MessageBroker.Default.Publish(new MessagePersonLeftAngry());
+                    GameObject.Destroy(ctx.Person.gameObject);
                 })
                 .AddTo(this);
 

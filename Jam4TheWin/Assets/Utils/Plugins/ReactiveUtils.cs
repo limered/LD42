@@ -242,6 +242,16 @@ namespace Utils.Plugins
             return obs.Select(map).Where(x => x != default(T2));
         }
 
+        public static IObservable<T> WaitForFirst<T>(this IObservable<T> obs, Func<T, bool> condition)
+        {
+            return obs.Where(condition).Take(1);
+        }
+
+        public static IObservable<T> WaitForFirst<T>(this IObservable<T> obs, Func<T, int, bool> condition)
+        {
+            return obs.Where(condition).Take(1);
+        }
+
         #endregion Filter
     }
 

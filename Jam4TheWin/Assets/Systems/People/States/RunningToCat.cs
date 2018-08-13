@@ -6,6 +6,7 @@ using UniRx;
 using Systems.Player;
 using Systems.Movement;
 using UnityEngine;
+using Utils.Plugins;
 
 namespace Systems.People.States
 {
@@ -21,7 +22,7 @@ namespace Systems.People.States
         {
             get
             {
-                return new ReadOnlyCollection<Type>(new [] { typeof(Idle), typeof(Angry) });
+                return new ReadOnlyCollection<Type>(new[] { typeof(Idle), typeof(Angry) });
             }
         }
         public override bool Enter<TState>(IStateContext<TState> context)
@@ -34,25 +35,15 @@ namespace Systems.People.States
             //noticing that the cat stinks
             ctx.Person
                 .OnTriggerEnterAsObservable()
-                .Subscribe(collider =>
-                {
-                    if (collider.GetComponent<StinkColliderComponent>())
-                    {
-                        ctx.GoToState(new Angry());
-                    }
-                })
+                .WaitForFirst(c => c.GetComponent<StinkColliderComponent>())
+                .Subscribe(_ => ctx.GoToState(new Angry()))
                 .AddTo(this);
 
             //running out of love radius
             ctx.Person
                 .OnTriggerExitAsObservable()
-                .Subscribe(collider =>
-                {
-                    if (collider.GetComponent<LoveColliderComponent>())
-                    {
-                        ctx.GoToState(new Idle());
-                    }
-                })
+                .WaitForFirst(c => c.GetComponent<LoveColliderComponent>())
+                .Subscribe(_ => ctx.GoToState(new Idle()))
                 .AddTo(this);
 
             return true;

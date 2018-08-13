@@ -7,6 +7,7 @@ using Systems.Movement;
 using UniRx;
 using UniRx.Triggers;
 using Utils.DotNet;
+using Utils.Plugins;
 using Object = UnityEngine.Object;
 
 namespace Systems.People.States
@@ -31,8 +32,8 @@ namespace Systems.People.States
                 movement.Target = spots.RandomElement().gameObject;
 
                 ctx.Person.OnTriggerEnterAsObservable()
-                    .Where(coll => coll.gameObject == movement.Target)
-                    .Subscribe(coll => ctx.GoToState(new Idle()))
+                    .WaitForFirst(coll => coll.gameObject == movement.Target)
+                    .Subscribe(_ => ctx.GoToState(new Idle()))
                     .AddTo(this);
             }
 

@@ -6,6 +6,8 @@ using UniRx.Triggers;
 using UniRx;
 using UnityEngine;
 using Systems.Room;
+using Systems.Score;
+using Utils.Plugins;
 
 namespace Systems.People.States
 {
@@ -23,17 +25,16 @@ namespace Systems.People.States
             var ctx = (PersonStateContext)context;
 
             var target = ctx.Person.GetComponent<TargetMutator>();
-            target.Target = GameObject.FindGameObjectWithTag("door");
+            target.Target = GameObject.FindObjectOfType<DoorComponent>().gameObject;
 
             //if door is reached -> kill this person
             ctx.Person
                 .OnTriggerEnterAsObservable()
+                .WaitForFirst(c => c.GetComponent<DoorComponent>())
                 .Subscribe(collider =>
                 {
-                    if (collider.GetComponent<DoorComponent>())
-                    {
-                        GameObject.Destroy(ctx.Person.gameObject);
-                    }
+                    MessageBroker.Default.Publish(new MessagePersonLoved());
+                    GameObject.Destroy(ctx.Person.gameObject);
                 })
                 .AddTo(this);
 

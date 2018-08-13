@@ -7,6 +7,7 @@ using Systems.Player;
 using UniRx;
 using UniRx.Triggers;
 using Utils.DotNet;
+using Utils.Plugins;
 
 namespace Systems.People.States
 {
@@ -42,13 +43,8 @@ namespace Systems.People.States
             //Cat is near -> go to cat
             ctx.Person
                 .OnTriggerEnterAsObservable()
-                .Subscribe(collider =>
-                {
-                    if (collider.GetComponent<LoveColliderComponent>())
-                    {
-                        ctx.GoToState(new RunningToCat(collider.transform.parent.gameObject));
-                    }
-                })
+                .WaitForFirst(c => c.GetComponent<LoveColliderComponent>())
+                .Subscribe(collider => ctx.GoToState(new RunningToCat(collider.transform.parent.gameObject)))
                 .AddTo(this);
 
             return true;

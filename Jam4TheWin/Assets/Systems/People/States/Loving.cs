@@ -5,6 +5,8 @@ using Systems.Movement;
 using Systems.Player;
 using UniRx;
 using UniRx.Triggers;
+using UnityEngine;
+using Utils.Plugins;
 
 namespace Systems.People.States
 {
@@ -21,44 +23,20 @@ namespace Systems.People.States
         {
             var ctx = (PersonStateContext)context;
 
-            ctx.LovingCount.Value = 1;
-            Disposable.Create(() => ctx.LovingCount.Value = 0).AddTo(this); //reset to 0 when Exiting
-
             var target = ctx.Person.GetComponent<TargetMutator>();
             target.Target = null;
 
-            //standing long enough near the cat to love it
-            ctx.LovingCount
-                .Select(x => x > 0)
-                .DistinctUntilChanged()
-                .Throttle(TimeSpan.FromSeconds(ctx.Person.TimeUntilHappy))
-                .Where(x => x == true)
+            //cat approved love
+            MessageBroker.Default.Receive<MessageCatMadeLoveToPerson>()
+                .WaitForFirst(x => x.Person == ctx.Person.GetComponent<Collider>())
                 .Subscribe(_ => ctx.GoToState(new Happy()))
                 .AddTo(this);
 
-            //increase LovingCount
-            ctx.Person
-                .OnTriggerEnterAsObservable()
-                .Where(c => c.GetComponent<InnerSpaceColliderComponent>())
-                .Subscribe(collider =>
-                {
-                    ctx.LovingCount.Value++;
-                    ctx.GoToState(new Angry());
-                })
-                .AddTo(this);
-
-            //descrease LovingCount
+            //cat's love is gone
             ctx.Person
                 .OnTriggerExitAsObservable()
-                .Where(c => c.GetComponent<InnerSpaceColliderComponent>())
-                .Subscribe(collider =>
-                {
-                    ctx.LovingCount.Value = Math.Max(ctx.LovingCount.Value - 1, 0);
-                    if (ctx.LovingCount.Value == 0)
-                    {
-                        ctx.GoToState(new Angry());
-                    }
-                })
+                .WaitForFirst(c => c.GetComponent<InnerSpaceColliderComponent>())
+                .Subscribe(_ => ctx.GoToState(new Angry()))
                 .AddTo(this);
 
             return true;
