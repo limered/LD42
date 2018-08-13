@@ -113,22 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &281000124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1818043054876556, guid: e1029fa9d496347f3b953980da638880,
-    type: 2}
-  m_PrefabInternal: {fileID: 1769015582}
---- !u!114 &281000125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 281000124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f56fb3ea7546f68ffbd8076b12ec07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &675850829
 Prefab:
   m_ObjectHideFlags: 0
@@ -210,26 +194,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114228065954729170, guid: 3fa6388c530f2724ea2ecae83c90237c,
-        type: 2}
-      propertyPath: CollidesWith.m_Bits
-      value: 9728
-      objectReference: {fileID: 0}
-    - target: {fileID: 114948618744809252, guid: 3fa6388c530f2724ea2ecae83c90237c,
-        type: 2}
-      propertyPath: MaxDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114948618744809252, guid: 3fa6388c530f2724ea2ecae83c90237c,
-        type: 2}
-      propertyPath: Acceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114948618744809252, guid: 3fa6388c530f2724ea2ecae83c90237c,
-        type: 2}
-      propertyPath: MaxSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa6388c530f2724ea2ecae83c90237c, type: 2}
   m_IsPrefabAsset: 0
@@ -310,23 +274,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45, y: -134, z: 0}
---- !u!1 &1001120702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1082039466927624, guid: e1029fa9d496347f3b953980da638880,
-    type: 2}
-  m_PrefabInternal: {fileID: 1769015582}
---- !u!114 &1001120703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1001120702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2d76e352d34768ad5be5ec13110090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HungerReduceFactor: 10
 --- !u!1 &1452460437
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,40 +378,6 @@ Prefab:
     - target: {fileID: 4042447569995464, guid: e1029fa9d496347f3b953980da638880, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 136948354141764398, guid: e1029fa9d496347f3b953980da638880,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65422809313702224, guid: e1029fa9d496347f3b953980da638880,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1818043054876556, guid: e1029fa9d496347f3b953980da638880, type: 2}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781675467628692, guid: e1029fa9d496347f3b953980da638880, type: 2}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1082039466927624, guid: e1029fa9d496347f3b953980da638880, type: 2}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1543973910740950, guid: e1029fa9d496347f3b953980da638880, type: 2}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327401411720528, guid: e1029fa9d496347f3b953980da638880, type: 2}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1823501032922850, guid: e1029fa9d496347f3b953980da638880, type: 2}
-      propertyPath: m_Layer
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1029fa9d496347f3b953980da638880, type: 2}

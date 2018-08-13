@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Acceleration: 100
-  MaxSpeed: 0.2
+  MaxSpeed: 0.17
   MaxDistance: 5
   Target: {fileID: 0}
 --- !u!136 &136089877840875232
