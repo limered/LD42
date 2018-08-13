@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using SystemBase;
+using Systems.GameState;
 using Systems.Player;
 using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils;
 using Utils.Plugins;
 
 namespace Systems.VFX.Lights
@@ -28,6 +30,7 @@ namespace Systems.VFX.Lights
              _cat.WhereNotNull().Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
 
             component.UpdateAsObservable()
+                .Where(u => IoC.Game.GameStateMachine.CurrentState.Value is Running)
                 .Subscribe(UpdatepartyLight(component))
                 .AddTo(component);
         }
@@ -83,26 +86,12 @@ namespace Systems.VFX.Lights
 
         public override void Register(FoodLightComponent component)
         {
-            if (_cat.HasValue)
-            {
-                _cat.Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
-            }
-            else
-            {
-                _cat.Skip(1).Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
-            }
+            _cat.WhereNotNull().Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
         }
 
         public override void Register(LooLightComponent component)
         {
-            if (_cat.HasValue)
-            {
-                _cat.Subscribe(RegisterLooLightToCatState(component)).AddTo(component);
-            }
-            else
-            {
-                _cat.Skip(1).Subscribe(RegisterLooLightToCatState(component)).AddTo(component);
-            }
+            _cat.WhereNotNull().Subscribe(RegisterLooLightToCatState(component)).AddTo(component);
         }
 
         private IEnumerator BlinkLight(float duration, float min, float max, Light light)

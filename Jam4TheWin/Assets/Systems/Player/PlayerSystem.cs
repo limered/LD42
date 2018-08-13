@@ -8,6 +8,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using Utils;
+using Utils.Plugins;
 
 namespace Systems.Player
 {
@@ -18,18 +19,8 @@ namespace Systems.Player
 
         public override void Register(CatComponent component)
         {
-            if (_mouse.HasValue)
-            {
-                _mouse.Subscribe(RegisterCatComponent(component)).AddTo(component);
-            }
-            else
-            {
-                _mouse.Skip(1).Subscribe(RegisterCatComponent(component)).AddTo(component);
-            }
 
-            var firstState = new Hungry();
-            component.CatStateContext = new CatStateContext(firstState, component);
-            firstState.Enter(component.CatStateContext);
+            _mouse.WhereNotNull().Subscribe(RegisterCatComponent(component)).AddTo(component);
 
             component.CatStateContext.CurrentState
                 .Subscribe(CatStateChanged(component.CatStateContext))
@@ -92,6 +83,11 @@ namespace Systems.Player
         {
             var player = GameObject.Instantiate(component.PlayerPrefab, component.transform);
             player.GetComponent<TargetMutator>().Target = component.Mouse;
+            var cat = player.GetComponent<CatComponent>();
+
+            var firstState = new Hungry();
+            cat.CatStateContext = new CatStateContext(firstState, cat);
+            firstState.Enter(cat.CatStateContext);
 
             IoC.Game.GameStateMachine.CurrentState
                 .Where(s => s is GameOver)
