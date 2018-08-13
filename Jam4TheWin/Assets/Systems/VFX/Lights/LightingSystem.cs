@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using SystemBase;
 using Systems.Player;
 using Systems.Player.States;
@@ -25,12 +23,46 @@ namespace Systems.VFX.Lights
 
         public override void Register(PartyLightComponent component)
         {
-            
         }
 
         public override void Register(FoodLightComponent component)
         {
-            _cat.Skip(1).Subscribe(cat => cat.CatStateContext.CurrentState.Subscribe(state =>
+            if (_cat.HasValue)
+            {
+                _cat.Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
+            }
+            else
+            {
+                _cat.Skip(1).Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
+            }
+        }
+
+        public override void Register(LooLightComponent component)
+        {
+            if (_cat.HasValue)
+            {
+                _cat.Subscribe(RegisterLooLightToCatState(component)).AddTo(component);
+            }
+            else
+            {
+                _cat.Skip(1).Subscribe(RegisterLooLightToCatState(component)).AddTo(component);
+            }
+        }
+
+        private IEnumerator BlinkLight(float duration, float min, float max, Light light)
+        {
+            for (float i = 0; i < duration; i += Time.deltaTime)
+            {
+                var step = (max - min * i / duration);
+                var intensity = min + step;
+                light.intensity = intensity;
+                yield return null;
+            }
+        }
+
+        private System.Action<CatComponent> RegisterFoodLightToCatState(FoodLightComponent component)
+        {
+            return cat => cat.CatStateContext.CurrentState.Subscribe(state =>
             {
                 if (state.GetType() == typeof(Hungry))
                 {
@@ -64,12 +96,11 @@ namespace Systems.VFX.Lights
                     component.GetComponent<Light>().color = _inactiveColor;
                     component.GetComponent<Light>().intensity = 15;
                 }
-            })).AddTo(component);
+            });
         }
-
-        public override void Register(LooLightComponent component)
+        private System.Action<CatComponent> RegisterLooLightToCatState(LooLightComponent component)
         {
-            _cat.Skip(1).Subscribe(cat => cat.CatStateContext.CurrentState.Subscribe(state =>
+            return cat => cat.CatStateContext.CurrentState.Subscribe(state =>
             {
                 if (state.GetType() == typeof(Full))
                 {
@@ -103,18 +134,7 @@ namespace Systems.VFX.Lights
                     component.GetComponent<Light>().color = _inactiveColor;
                     component.GetComponent<Light>().intensity = 15;
                 }
-            })).AddTo(component);
-        }
-
-        private IEnumerator BlinkLight(float duration, float min, float max, Light light)
-        {
-            for (float i = 0; i < duration; i += Time.deltaTime)
-            {
-                var step = (max - min * i / duration);
-                var intensity = min + step;
-                light.intensity = intensity;
-                yield return null;
-            }
+            });
         }
     }
 }
