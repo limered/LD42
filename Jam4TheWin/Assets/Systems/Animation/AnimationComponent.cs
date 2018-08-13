@@ -5,7 +5,7 @@ namespace Systems.Animation
 {
     public class AnimationComponent : GameComponent
     {
-        public Animator CatAnimator;
+        public Animator CharacterAnimator;
         public Animator BulbAnimator;
     }
 }

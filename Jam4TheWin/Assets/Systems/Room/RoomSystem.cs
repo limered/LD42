@@ -39,7 +39,7 @@ namespace Systems.Room
             {
                 var pos = comp.transform.position;
 
-                if (comp.CustomOffsetToGround == 0f) pos.y = comp.GetComponent<Renderer>().bounds.extents.y / 2f;
+                if (comp.CustomOffsetToGround == 0f) pos.y = comp.GetComponentInChildren<Renderer>().bounds.extents.y / 2f;
                 else pos.y = comp.CustomOffsetToGround;
 
                 comp.transform.position = pos;
