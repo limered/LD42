@@ -1358,9 +1358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e676591d0044daf87468d15b106837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawns: {fileID: 1765694995799600, guid: 80945bb037e2646b2939c7895ee4a075, type: 2}
+  Spawns: {fileID: 1083763730431174, guid: 0474332f1c4f0374b99a5418a38e6817, type: 2}
   Interval:
-    value: 5
+    value: 20
 --- !u!114 &114291955792276938
 MonoBehaviour:
   m_ObjectHideFlags: 1
