@@ -1,10 +1,12 @@
 ﻿using System;
 using SystemBase;
+using Systems.GameState;
 using Systems.Room;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
+using Utils;
 
 namespace Systems.Control
 {
@@ -14,6 +16,7 @@ namespace Systems.Control
         public override void Register(MouseControlComponent component)
         {
             component.UpdateAsObservable()
+                .Where(u=>IoC.Game.GameStateMachine.CurrentState.Value.GetType() == typeof(Running))
                 .Subscribe(CheckMousePorition(component))
                 .AddTo(component);
         }
