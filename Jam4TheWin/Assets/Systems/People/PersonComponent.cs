@@ -10,5 +10,6 @@ namespace Systems.People
     public class PersonComponent : GameComponent
     {
         public PersonStateContext StateContext;
+        public float TimeUntilHappy = 3f; //seconds
     }
 }

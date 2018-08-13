@@ -24,6 +24,7 @@ namespace Systems.People.States
         {
             var ctx = (PersonStateContext)context;
 
+            //go to next spot
             var spots = UnityEngine.Object.FindObjectsOfType<GatheringSpotComponent>();
             Observable
                 .Interval(TimeSpan.FromSeconds(15))
