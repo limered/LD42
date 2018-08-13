@@ -33,29 +33,18 @@ namespace Systems.Player
             component.CatStateContext.CurrentState
                 .Subscribe(CatStateChanged(component.CatStateContext))
                 .AddTo(component);
+
+            MessageBroker.Default.Receive<CatGetsHitMessage>()
+                .Subscribe(CatHit)
+                .AddTo(component);
         }
 
         private void CatHit(CatGetsHitMessage m)
         {
-            //var targetM = m.Cat.GetComponent<TargetMutator>();
-            //var target = targetM.Target;
-            //var movement = m.Cat.GetComponent<MovementComponent>();
-            //var mutator = m.Cat.gameObject.AddComponent<RunAwayMutator>();
-            //var template = m.Cat.RunAwayMutatorTemplate;
-
-            //mutator.Acceleration = template.Acceleration;
-            //mutator.MaxDistance = template.MaxDistance;
-            //mutator.MaxSpeed = template.MaxSpeed;
-            //mutator.Source = m.Collider.gameObject;
-            //movement.MovementMutators.Add(mutator);
-
-            //Observable.Timer(TimeSpan.FromMilliseconds(50))
-            //    .Subscribe(t=>
-            //    {
-            //        movement.MovementMutators.Remove(mutator);
-            //        Object.Destroy(mutator);
-            //        targetM.Target = target;
-            //    });
+            if (m.Cat.IsAngry) return;
+            m.Cat.IsAngry = true;
+            Observable.Timer(TimeSpan.FromSeconds(m.Cat.AngryTime))
+                .Subscribe(t => m.Cat.IsAngry = false);
         }
 
         private static Action<ICatState> CatStateChanged(CatStateContext ctx)

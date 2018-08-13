@@ -21,13 +21,11 @@ namespace Systems.Animation
         public override void Register(CatComponent component)
         {
             component.CatStateContext.CurrentState
-                .Subscribe(state =>
-                {
-                    CatStateChanged(state, component);
-                })
+                .Subscribe(state => CatStateChanged(state, component))
                 .AddTo(component);
 
-            MessageBroker.Default.Receive<CatGetsHitMessage>()
+            MessageBroker.Default
+                .Receive<CatGetsHitMessage>()
                 .Subscribe(CatHit)
                 .AddTo(component);
 
@@ -106,7 +104,6 @@ namespace Systems.Animation
 
         private void PeopleStateChanged(PersonState state, PersonComponent component)
         {
-            //Debug.Log("people state " + state.GetType().Name);
             var anim = component.GetComponent<AnimationComponent>();
             switch (state.GetType().Name)
             {

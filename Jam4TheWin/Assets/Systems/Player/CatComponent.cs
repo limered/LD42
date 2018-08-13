@@ -23,5 +23,6 @@ namespace Systems.Player
         public GameObject InnerSpaceCollider;
 
         public CatStateContext CatStateContext;
+        public bool IsAngry { get; set; }
     }
 }

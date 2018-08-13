@@ -32,9 +32,12 @@ namespace Systems.Player.States
 
             _catEatingDisposable = ctx.Cat.OnTriggerEnterAsObservable()
                 .Where(IsFood())
+                .Where(coll=>!ctx.Cat.IsAngry)
                 .Subscribe(CatStartsEating(ctx));
 
-            _enemyHitDisposable = ctx.Cat.InnerSpaceCollider.OnTriggerEnterAsObservable()
+            _enemyHitDisposable = ctx.Cat.InnerSpaceCollider
+                .OnTriggerStayAsObservable()
+                .Where(coll => !ctx.Cat.IsAngry)
                 .Where(coll => coll.GetComponent<PersonComponent>())
                 .Subscribe(GetHit(ctx.Cat));
 
