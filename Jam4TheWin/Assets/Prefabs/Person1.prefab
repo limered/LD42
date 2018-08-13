@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollidesWith:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3584
   ObstaclePaddig: 1
 --- !u!114 &114376278607284040
 MonoBehaviour:
@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ceb10e6bdce241bc8f5dbd1da85bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 100
-  MaxSpeed: 0.2
-  MaxDistance: 5
+  Acceleration: 50
+  MaxSpeed: 0.17
+  MaxDistance: 20
   Target: {fileID: 0}
 --- !u!136 &136089877840875232
 CapsuleCollider:

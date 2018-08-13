@@ -16,13 +16,15 @@ namespace Systems.Player
         public FloatReactiveProperty PoopingTimer = new FloatReactiveProperty(MaxPoopingTime);
         public FloatReactiveProperty LoveTimer = new FloatReactiveProperty(MaxLoveTimer);
 
-        public float HitJumpForce;
+        public float AngryTime;
 
         public GameObject LoveCollider;
         public GameObject StinkCollider;
         public GameObject InnerSpaceCollider;
-        public RunAwayMutator RunAwayMutatorTemplate;
 
         public CatStateContext CatStateContext;
+        public bool IsAngry { get; set; }
+        public float InLoveStarted { get; set; }
+        public static float MaxInLoveTime = 30;
     }
 }

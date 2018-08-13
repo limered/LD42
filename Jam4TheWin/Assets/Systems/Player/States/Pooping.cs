@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
 using Systems.Interactables;
+using Systems.People;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Systems.Player.States
     {
         private IDisposable _poopintDisposable;
         private IDisposable _poopingStopDisposable;
+        private IDisposable _enemyHitDisposable;
 
         public ReadOnlyCollection<Type> ValidNextStates
         {
@@ -28,6 +30,7 @@ namespace Systems.Player.States
 
             ctx.Cat.PoopingTimer.Value = CatComponent.MaxPoopingTime;
             _poopintDisposable = ctx.Cat.OnTriggerStayAsObservable()
+                .Where(coll => !ctx.Cat.IsAngry)
                 .Where(coll => coll.GetComponent<LooComponent>())
                 .Subscribe(CatPoops(ctx));
 
@@ -35,7 +38,18 @@ namespace Systems.Player.States
                 .Where(coll => coll.GetComponent<LooComponent>())
                 .Subscribe(CatStopsPooping(ctx));
 
+            _enemyHitDisposable = ctx.Cat.InnerSpaceCollider
+                .OnTriggerStayAsObservable()
+                .Where(coll => !ctx.Cat.IsAngry)
+                .Where(coll => coll.GetComponent<PersonComponent>())
+                .Subscribe(GetHit(ctx.Cat));
+
             return true;
+        }
+
+        private Action<Collider> GetHit(CatComponent cat)
+        {
+            return coll => MessageBroker.Default.Publish(new CatGetsHitMessage { Cat = cat, Collider = coll });
         }
 
         private Action<Collider> CatStopsPooping(CatStateContext context)
@@ -59,6 +73,7 @@ namespace Systems.Player.States
         {
             _poopintDisposable.Dispose();
             _poopingStopDisposable.Dispose();
+            _enemyHitDisposable.Dispose();
         }
     }
 }

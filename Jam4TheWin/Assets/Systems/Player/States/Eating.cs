@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
 using Systems.Interactables;
+using Systems.People;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Systems.Player.States
     {
         private IDisposable _catUpdateDisposable;
         private IDisposable _catTriggerExitDisposable;
+        private IDisposable _enemyHitDisposable;
 
         public ReadOnlyCollection<Type> ValidNextStates
         {
@@ -30,10 +32,22 @@ namespace Systems.Player.States
                 .Subscribe(CatStopsEating(ctx));
 
             _catUpdateDisposable = ctx.Cat.OnTriggerStayAsObservable()
+                .Where(coll => !ctx.Cat.IsAngry)
                 .Where(IsFood())
                 .Subscribe(CatFeeding(ctx));
 
+            _enemyHitDisposable = ctx.Cat.InnerSpaceCollider
+                .OnTriggerStayAsObservable()
+                .Where(coll => !ctx.Cat.IsAngry)
+                .Where(coll => coll.GetComponent<PersonComponent>())
+                .Subscribe(GetHit(ctx.Cat));
+
             return true;
+        }
+
+        private Action<Collider> GetHit(CatComponent cat)
+        {
+            return coll => { MessageBroker.Default.Publish(new CatGetsHitMessage {Cat = cat, Collider = coll}); };
         }
 
         private static Func<Collider, bool> IsFood()
@@ -63,6 +77,7 @@ namespace Systems.Player.States
         {
             _catUpdateDisposable.Dispose();
             _catTriggerExitDisposable.Dispose();
+            _enemyHitDisposable.Dispose();
         }
     }
 }
