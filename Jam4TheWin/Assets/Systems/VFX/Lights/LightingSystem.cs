@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using SystemBase;
 using Systems.Player;
 using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils.Plugins;
 
 namespace Systems.VFX.Lights
 {
@@ -23,6 +25,60 @@ namespace Systems.VFX.Lights
 
         public override void Register(PartyLightComponent component)
         {
+             _cat.WhereNotNull().Subscribe(RegisterFoodLightToCatState(component)).AddTo(component);
+
+            component.UpdateAsObservable()
+                .Subscribe(UpdatepartyLight(component))
+                .AddTo(component);
+        }
+
+        private Action<CatComponent> RegisterFoodLightToCatState(PartyLightComponent component)
+        {
+            return cat =>
+            {
+                cat.CatStateContext.CurrentState
+                    .Where(state => state.GetType() == typeof(Hungry))
+                    .Subscribe(state =>
+                    {
+
+                        var light = component.GetComponent<Light>();
+                        light.color = component.BaseColor;
+                        component.Mode = PartyLightMode.Party;
+                    })
+                    .AddTo(component);
+
+                cat.CatStateContext.CurrentState
+                    .Where(state => state.GetType() == typeof(NeedsLove))
+                    .Subscribe(state =>
+                    {
+                        var light = component.GetComponent<Light>();
+                        light.color = component.LoveColor;
+                        component.Mode = PartyLightMode.Love;
+                    })
+                    .AddTo(component);
+            };
+        }
+
+        private static Action<Unit> UpdatepartyLight(PartyLightComponent component)
+        {
+            return unit =>
+            {
+                var light = component.GetComponent<Light>();
+
+                if (component.Mode == PartyLightMode.Party)
+                {
+                    
+                    var intensity = Mathf.Sin(Time.realtimeSinceStartup * 15) * 10 - 5;
+                    intensity = Mathf.Max(0, intensity);
+                    light.intensity = intensity;
+                }
+                else
+                {
+
+                    var intensity = Mathf.Sin(Time.realtimeSinceStartup) * 2.5f + 5f;
+                    light.intensity = intensity;
+                }
+            };
         }
 
         public override void Register(FoodLightComponent component)
