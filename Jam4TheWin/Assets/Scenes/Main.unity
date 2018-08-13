@@ -113,83 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &247562888
-GameObject:
+--- !u!1001 &62265135
+Prefab:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 247562891}
-  - component: {fileID: 247562890}
-  - component: {fileID: 247562889}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &247562889
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247562888}
-  m_Enabled: 1
---- !u!20 &247562890
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247562888}
-  m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 12.87
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &247562891
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247562888}
-  m_LocalRotation: {x: 0.09094032, y: -0.8931629, z: 0.20971373, w: 0.3873113}
-  m_LocalPosition: {x: 60.88, y: 41.47, z: 56.61}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 26.427002, y: -133.113, z: 0}
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 60.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 41.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 56.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.09094032
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.8931629
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.20971373
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.3873113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204582747915522, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b68fc371e2602e44b4c2f162d2815f4, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &592835440
 Prefab:
   m_ObjectHideFlags: 0
@@ -342,7 +307,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
