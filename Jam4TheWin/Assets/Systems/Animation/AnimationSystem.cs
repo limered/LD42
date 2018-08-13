@@ -8,14 +8,15 @@ using Systems.Player.States;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Utils.Plugins;
 
 namespace Systems.Animation
 {
     [GameSystem(typeof(PlayerSystem), typeof(PeopleSystem))]
-    public class AnimationSystem : GameSystem<AnimationComponent, CatComponent, PersonComponent>
+    public class AnimationSystem : GameSystem<AnimationComponent, CatComponent, PersonComponent, StrinkObejcsComponent>
     {
+        private readonly ReactiveProperty<CatComponent> _cat = new ReactiveProperty<CatComponent>();
         private IDisposable _dispose;
-
         public override void Register(AnimationComponent component)
         {
         }
@@ -37,6 +38,17 @@ namespace Systems.Animation
                 .AddTo(component);
         }
 
+        public override void Register(PersonComponent component)
+        {
+            component.StateContext.CurrentState
+                .Subscribe(state => PeopleStateChanged(state, component))
+                .AddTo(component);
+        }
+
+        public override void Register(StrinkObejcsComponent component)
+        {
+        }
+
         private Action<bool> CanMoveChanged(CatComponent cat)
         {
             return b =>
@@ -52,17 +64,23 @@ namespace Systems.Animation
                 }
             };
         }
-
-        public override void Register(PersonComponent component)
+        private void CatHit(CatGetsHitMessage m)
         {
-            component.StateContext.CurrentState
-                .Subscribe(state => PeopleStateChanged(state, component))
-                .AddTo(component);
+            var anim = m.Cat.GetComponent<AnimationComponent>();
+            var lastState = m.Cat.CatStateContext.CurrentState.Value;
+
+            anim.CharacterAnimator.Play("cat_angry");
+            anim.BulbAnimator.Play("bulb_angry");
+
+            Observable
+                .Timer(TimeSpan.FromSeconds(m.Cat.AngryTime))
+                .Subscribe(t => CatStateChanged(lastState, m.Cat.GetComponent<CatComponent>()));
         }
 
         private void CatStateChanged(ICatState state, CatComponent component)
         {
             var anim = component.GetComponent<AnimationComponent>();
+            var stink = component.GetComponent<StrinkObejcsComponent>();
 
             switch (state.GetType().Name)
             {
@@ -96,6 +114,8 @@ namespace Systems.Animation
                         anim.CharacterAnimator.Play("cat_standing");
                     }
                     anim.BulbAnimator.Play("bulb_hungry");
+                    stink.Flies.SetActive(false);
+                    stink.Smoke.SetActive(false);
                     break;
 
                 case "NeedsLove":
@@ -104,12 +124,15 @@ namespace Systems.Animation
                     {
                         anim.CharacterAnimator.Play("cat_walking");
                     }
-                    else {
+                    else
+                    {
                         anim.CharacterAnimator.Play("cat_standing");
                     }
-                    
+
                     _dispose = component.UpdateAsObservable().Subscribe(f => anim.BulbAnimator.SetFloat("Progress", 1 - (component.InLoveStarted + CatComponent.MaxInLoveTime - Time.realtimeSinceStartup) / CatComponent.MaxInLoveTime));
                     anim.BulbAnimator.Play("bulb_isLoving");
+                    stink.Flies.SetActive(true);
+                    stink.Smoke.SetActive(true);
                     break;
 
                 case "Loving":
@@ -130,39 +153,31 @@ namespace Systems.Animation
             switch (state.GetType().Name)
             {
                 case "Angry":
+                    anim.CharacterAnimator.Play("person_angry");
                     anim.BulbAnimator.Play("bulb_stinky");
                     break;
 
                 case "Entering":
                 case "Idle":
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_music");
                     break;
 
                 case "Happy":
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_hasLove");
                     break;
 
                 case "Loving":
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_hasLove");
                     break;
 
                 case "RunningToCat":
+                    anim.CharacterAnimator.Play("person_standing");
                     anim.BulbAnimator.Play("bulb_needLove");
                     break;
             }
-        }
-
-        private void CatHit(CatGetsHitMessage m)
-        {
-            var anim = m.Cat.GetComponent<AnimationComponent>();
-            var lastState = m.Cat.CatStateContext.CurrentState.Value;
-
-            anim.CharacterAnimator.Play("cat_angry");
-            anim.BulbAnimator.Play("bulb_angry");
-
-            Observable
-                .Timer(TimeSpan.FromSeconds(m.Cat.AngryTime))
-                .Subscribe(t => CatStateChanged(lastState, m.Cat.GetComponent<CatComponent>()));
         }
     }
 }
