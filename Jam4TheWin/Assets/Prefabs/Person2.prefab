@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114657181378028940}
   - component: {fileID: 114822092162543468}
   - component: {fileID: 114193606697158904}
+  - component: {fileID: 54409663705372234}
   m_Layer: 11
   m_Name: Person2
   m_TagString: Untagged
@@ -111,6 +112,21 @@ Transform:
   m_Father: {fileID: 4356207154193620}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54409663705372234
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083763730431174}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!95 &95400497952751190
 Animator:
   serializedVersion: 3

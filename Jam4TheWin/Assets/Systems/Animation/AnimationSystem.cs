@@ -112,6 +112,7 @@ namespace Systems.Animation
                     break;
 
                 case "Entering":
+                case "Idle":
                     anim.BulbAnimator.Play("bulb_music");
                     break;
 
@@ -123,7 +124,7 @@ namespace Systems.Animation
                     anim.BulbAnimator.Play("bulb_hasLove");
                     break;
 
-                case "RunToCat":
+                case "RunningToCat":
                     anim.BulbAnimator.Play("bulb_needLove");
                     break;
             }
