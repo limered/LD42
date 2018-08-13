@@ -169,7 +169,7 @@ namespace Systems.Animation
                     break;
 
                 case "Loving":
-                    anim.CharacterAnimator.Play("person_standing");
+                    anim.CharacterAnimator.Play("person_petting");
                     anim.BulbAnimator.Play("bulb_hasLove");
                     break;
 
