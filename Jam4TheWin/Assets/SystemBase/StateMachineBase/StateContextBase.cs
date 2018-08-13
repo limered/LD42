@@ -13,11 +13,22 @@ namespace SystemBase.StateMachineBase
         public ReactiveProperty<TState> CurrentState { get; private set; }
         public bool GoToState(TState state)
         {
-            if (CurrentState.Value.ValidNextStates.All(st => st != state.GetType())) return false;
+            try
+            {
+                if (CurrentState.Value.ValidNextStates.All(st => st != state.GetType())) return false;
 
-            CurrentState.Value.Exit();
-            CurrentState.Value = state;
-            return CurrentState.Value.Enter(this);
+                BeforeStateChange(state);
+                CurrentState.Value.Exit();
+                CurrentState.Value = state;
+                return CurrentState.Value.Enter(this);
+            }
+            finally
+            {
+                AfterStateChange(state);
+            }
         }
+
+        protected virtual void BeforeStateChange(TState state) { }
+        protected virtual void AfterStateChange(TState state) { }
     }
 }

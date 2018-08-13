@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using SystemBase.StateMachineBase;
 using Systems.Movement;
+using Systems.Sound;
 using UniRx;
 using UniRx.Triggers;
 using Utils.DotNet;
@@ -26,6 +27,9 @@ namespace Systems.People.States
         {
             var ctx = (PersonStateContext)context;
             var spots = Object.FindObjectsOfType<GatheringSpotComponent>();
+
+            "door_close".Play();
+
             if (spots.Any())
             {
                 var movement = ctx.Person.GetComponent<TargetMutator>();

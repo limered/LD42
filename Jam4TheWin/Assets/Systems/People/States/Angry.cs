@@ -9,6 +9,7 @@ using Systems.Room;
 using Systems.Player;
 using Systems.Score;
 using Utils.Plugins;
+using Systems.Sound;
 
 namespace Systems.People.States
 {
@@ -46,6 +47,7 @@ namespace Systems.People.States
                 .Subscribe(collider =>
                 {
                     MessageBroker.Default.Publish(new MessagePersonLeftAngry());
+                    "door_close".Play();
                     GameObject.Destroy(ctx.Person.gameObject);
                 })
                 .AddTo(this);

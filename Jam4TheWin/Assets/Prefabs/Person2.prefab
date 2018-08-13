@@ -286,7 +286,7 @@ MonoBehaviour:
   - {fileID: 114193606697158904}
   - {fileID: 114873363739988464}
   CanMove:
-    value: 1
+    value: 0
   Direction:
     value: {x: 0, y: 0, z: 0}
   Speed:
