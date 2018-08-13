@@ -1,5 +1,6 @@
 ﻿using System;
 using SystemBase;
+using Systems.Movement;
 using Systems.People;
 using Systems.People.States;
 using Systems.Player;
@@ -30,6 +31,27 @@ namespace Systems.Animation
             MessageBroker.Default.Receive<CatGetsHitMessage>()
                 .Subscribe(CatHit)
                 .AddTo(component);
+
+            component.GetComponent<MovementComponent>()
+                .CanMove
+                .Subscribe(CanMoveChanged(component))
+                .AddTo(component);
+        }
+
+        private Action<bool> CanMoveChanged(CatComponent cat)
+        {
+            return b =>
+            {
+                if (b)
+                {
+                    cat.GetComponent<AnimationComponent>()
+                        .CharacterAnimator.Play("cat_walking");
+                }
+                else
+                {
+                    CatStateChanged(cat.CatStateContext.CurrentState.Value, cat);
+                }
+            };
         }
 
         public override void Register(PersonComponent component)
@@ -43,7 +65,7 @@ namespace Systems.Animation
         {
             var anim = component.GetComponent<AnimationComponent>();
             
-            switch (state.GetType().Name.ToString())
+            switch (state.GetType().Name)
             {
                 case "Eating":
                     anim.CharacterAnimator.Play("cat_eating");
@@ -52,18 +74,18 @@ namespace Systems.Animation
                     break;
                 case "Full":
                     dispose.Dispose();
-                    anim.CharacterAnimator.Play("cat_walking");
+                    anim.CharacterAnimator.Play("cat_standing");
                     anim.BulbAnimator.Play("bulb_full");
                     break;
                 case "Hungry":
-                    if(dispose != null)
-                        dispose.Dispose();
-                    anim.CharacterAnimator.Play("cat_walking");
+                    if(dispose != null) { dispose.Dispose();}
+
+                    anim.CharacterAnimator.Play("cat_standing");
                     anim.BulbAnimator.Play("bulb_hungry");
                     break;
                 case "NeedsLove":
                     dispose.Dispose();
-                    anim.CharacterAnimator.Play("cat_walking");
+                    anim.CharacterAnimator.Play("cat_standing");
                     anim.BulbAnimator.Play("bulb_needLove");
                     break;
                 case "Loving":
@@ -80,9 +102,9 @@ namespace Systems.Animation
 
         private void PeopleStateChanged(PersonState state, PersonComponent component)
         {
-            Debug.Log("people state " + state.GetType().Name.ToString());
+            //Debug.Log("people state " + state.GetType().Name);
             var anim = component.GetComponent<AnimationComponent>();
-            switch (state.GetType().Name.ToString())
+            switch (state.GetType().Name)
             {
                 case "Angry":
                     anim.BulbAnimator.Play("bulb_stinky");
