@@ -6,6 +6,7 @@ using Systems.People.States;
 using Systems.Player;
 using Systems.Player.States;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Systems.Animation
@@ -106,9 +107,8 @@ namespace Systems.Animation
                     else {
                         anim.CharacterAnimator.Play("cat_standing");
                     }
-
-                    var timer = component.InLoveStarted + CatComponent.MaxInLoveTime - Time.realtimeSinceStartup;
-                    _dispose = component.LoveTimer.Subscribe(f => anim.BulbAnimator.SetFloat("Progress", timer / CatComponent.MaxInLoveTime));
+                    
+                    _dispose = component.UpdateAsObservable().Subscribe(f => anim.BulbAnimator.SetFloat("Progress", 1 - (component.InLoveStarted + CatComponent.MaxInLoveTime - Time.realtimeSinceStartup) / CatComponent.MaxInLoveTime));
                     anim.BulbAnimator.Play("bulb_isLoving");
                     break;
 
