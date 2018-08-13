@@ -1,5 +1,6 @@
 ﻿using System;
 using SystemBase;
+using Systems.GameState;
 using UniRx;
 
 namespace Systems.Score
@@ -9,7 +10,7 @@ namespace Systems.Score
     {
         private int _angryPersons;
         private int _lovedPersons;
-        private int _maxScore = 42;
+        private int _maxScore = 2;
 
         public override void Register(ScoreComponent component)
         {
@@ -26,7 +27,7 @@ namespace Systems.Score
         {
             if (_lovedPersons + _angryPersons == _maxScore)
             {
-                MessageBroker.Default.Publish(new MessageMaxScoreReached());
+                MessageBroker.Default.Publish(new GameMessageEnd());
             }
         }
 
