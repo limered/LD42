@@ -160,53 +160,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 20012094647166798, guid: 2b68fc371e2602e44b4c2f162d2815f4,
     type: 2}
   m_PrefabInternal: {fileID: 62265135}
---- !u!1001 &133176703
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 455355441}
-    m_Modifications:
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4121546762095826, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
-  m_IsPrefabAsset: 0
---- !u!4 &455355441 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4794485187610980, guid: fd196de9ef65a094594c8224c130f27b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1878770039}
 --- !u!1001 &549392820
 Prefab:
   m_ObjectHideFlags: 0

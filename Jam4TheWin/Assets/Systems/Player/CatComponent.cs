@@ -9,8 +9,8 @@ namespace Systems.Player
     public class CatComponent : GameComponent
     {
         public static float MaxHunger = 100;
-        public static float MaxLoveTimer = 0.3f;
-        public static float MaxPoopingTime = 1.5f;
+        public static float MaxLoveTimer = 0.15f;
+        public static float MaxPoopingTime = 5f;
 
         public FloatReactiveProperty Hunger = new FloatReactiveProperty(MaxHunger);
         public FloatReactiveProperty PoopingTimer = new FloatReactiveProperty(MaxPoopingTime);
@@ -25,6 +25,6 @@ namespace Systems.Player
         public CatStateContext CatStateContext;
         public bool IsAngry { get; set; }
         public float InLoveStarted { get; set; }
-        public static float MaxInLoveTime = 30;
+        public static float MaxInLoveTime = 15;
     }
 }
