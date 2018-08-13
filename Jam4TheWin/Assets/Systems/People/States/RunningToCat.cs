@@ -34,9 +34,9 @@ namespace Systems.People.States
 
             //noticing that the cat stinks
             ctx.Person
-                .OnTriggerEnterAsObservable()
+                .OnTriggerStayAsObservable()
                 .WaitForFirst(c => c.GetComponent<StinkColliderComponent>())
-                .Subscribe(_ => ctx.GoToState(new Angry()))
+                .Subscribe(_ => ctx.GoToState(new Angry(_cat)))
                 .AddTo(this);
 
             //running out of love radius

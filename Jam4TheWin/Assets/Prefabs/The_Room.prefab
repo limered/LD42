@@ -1837,7 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawns: {fileID: 1083763730431174, guid: 0474332f1c4f0374b99a5418a38e6817, type: 2}
   Interval:
-    value: 5
+    value: 3
 --- !u!114 &114857751899116730
 MonoBehaviour:
   m_ObjectHideFlags: 1

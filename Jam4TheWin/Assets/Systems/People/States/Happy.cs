@@ -26,6 +26,7 @@ namespace Systems.People.States
 
             var target = ctx.Person.GetComponent<TargetMutator>();
             target.Target = GameObject.FindObjectOfType<DoorComponent>().gameObject;
+            target.MaxSpeed = 0.5f;
 
             //if door is reached -> kill this person
             ctx.Person

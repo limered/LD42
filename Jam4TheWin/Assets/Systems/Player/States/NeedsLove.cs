@@ -28,7 +28,6 @@ namespace Systems.Player.States
 
             ctx.Cat.StinkCollider.SetActive(true);
             ctx.Cat.InnerSpaceCollider.SetActive(false);
-            ctx.Cat.InLoveStarted = Time.realtimeSinceStartup;
 
             _lovingStateDisposable = ctx.Cat.OnTriggerEnterAsObservable()
                 .Where(coll => coll.GetComponent<PersonComponent>())
