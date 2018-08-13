@@ -199,18 +199,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 82043970536698918, guid: fa4a569fc2f8549cebf457088ec0ac5d,
-        type: 2}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114663312678097552, guid: fa4a569fc2f8549cebf457088ec0ac5d,
-        type: 2}
-      propertyPath: SoundSource
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 82043970536698918, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa4a569fc2f8549cebf457088ec0ac5d, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &455355441 stripped
