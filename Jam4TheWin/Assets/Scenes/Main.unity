@@ -271,7 +271,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114014559008552910, guid: 5c33319434b99be4dbc322d0bad31755,
+        type: 2}
+      propertyPath: AngryTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114014559008552910, guid: 5c33319434b99be4dbc322d0bad31755,
+        type: 2}
+      propertyPath: RunAwayMutatorTemplate
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114514231572896554, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1878770039
