@@ -84,7 +84,6 @@ GameObject:
   - component: {fileID: 114286570789763748}
   - component: {fileID: 114521911642383556}
   - component: {fileID: 114542558239350752}
-  - component: {fileID: 114514231572896554}
   - component: {fileID: 114362766254220208}
   m_Layer: 12
   m_Name: Cat
@@ -525,11 +524,10 @@ MonoBehaviour:
     value: 4
   LoveTimer:
     value: 3
-  HitJumpForce: 100
+  AngryTime: 1
   LoveCollider: {fileID: 1017682741687396}
   StinkCollider: {fileID: 1042557496603692}
   InnerSpaceCollider: {fileID: 1795608187471590}
-  RunAwayMutatorTemplate: {fileID: 114514231572896554}
 --- !u!114 &114041858347161442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,21 +614,6 @@ MonoBehaviour:
     value: {x: 0, y: 0, z: 0}
   MousePressed:
     value: 0
---- !u!114 &114514231572896554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1150891133624614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55883fcb75cf6a44cb78961253f78d4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Acceleration: 20
-  MaxSpeed: 0.5
-  MaxDistance: 5
-  Source: {fileID: 0}
 --- !u!114 &114521911642383556
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -274,15 +274,25 @@ Prefab:
     - target: {fileID: 114014559008552910, guid: 5c33319434b99be4dbc322d0bad31755,
         type: 2}
       propertyPath: AngryTime
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 114014559008552910, guid: 5c33319434b99be4dbc322d0bad31755,
-        type: 2}
-      propertyPath: RunAwayMutatorTemplate
-      value: 
+    - target: {fileID: 4032191613059672, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114514231572896554, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
+    - target: {fileID: 4884456988699900, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884456988699900, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884456988699900, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c33319434b99be4dbc322d0bad31755, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1878770039

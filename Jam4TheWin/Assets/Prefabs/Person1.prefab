@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ceb10e6bdce241bc8f5dbd1da85bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 100
+  Acceleration: 50
   MaxSpeed: 0.17
-  MaxDistance: 5
+  MaxDistance: 20
   Target: {fileID: 0}
 --- !u!136 &136089877840875232
 CapsuleCollider:
