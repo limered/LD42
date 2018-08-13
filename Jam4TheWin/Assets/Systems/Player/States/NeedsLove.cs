@@ -12,26 +12,43 @@ namespace Systems.Player.States
     public class NeedsLove : ICatState
     {
         private IDisposable _lovingStateDisposable;
+        private IDisposable _needsLoveStopTimer;
 
         public ReadOnlyCollection<Type> ValidNextStates
         {
             get
             {
-                return new ReadOnlyCollection<Type>(new List<Type>{typeof(Loving), typeof(Hungry)});
+                return new ReadOnlyCollection<Type>(new List<Type> { typeof(Loving), typeof(Hungry) });
             }
         }
 
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
-            var ctx = (CatStateContext) context;
+            var ctx = (CatStateContext)context;
 
             ctx.Cat.StinkCollider.SetActive(true);
             ctx.Cat.InnerSpaceCollider.SetActive(false);
+            ctx.Cat.InLoveStarted = Time.realtimeSinceStartup;
 
             _lovingStateDisposable = ctx.Cat.OnTriggerEnterAsObservable()
-                .Where(coll=>coll.GetComponent<PersonComponent>())
+                .Where(coll => coll.GetComponent<PersonComponent>())
                 .Subscribe(CatStartsMakingLove(ctx));
+
+            _needsLoveStopTimer = ctx.Cat.UpdateAsObservable()
+                .Subscribe(CheckInLoveTimer(ctx));
+
             return true;
+        }
+
+        private static Action<Unit> CheckInLoveTimer(CatStateContext ctx)
+        {
+            return unit =>
+            {
+                if (ctx.Cat.InLoveStarted + CatComponent.MaxInLoveTime < Time.realtimeSinceStartup)
+                {
+                    ctx.GoToState(new Hungry());
+                }
+            };
         }
 
         private Action<Collider> CatStartsMakingLove(CatStateContext ctx)
@@ -42,6 +59,7 @@ namespace Systems.Player.States
         public void Exit()
         {
             _lovingStateDisposable.Dispose();
+            _needsLoveStopTimer.Dispose();
         }
     }
 }

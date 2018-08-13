@@ -24,5 +24,7 @@ namespace Systems.Player
 
         public CatStateContext CatStateContext;
         public bool IsAngry { get; set; }
+        public float InLoveStarted { get; set; }
+        public static float MaxInLoveTime = 30;
     }
 }

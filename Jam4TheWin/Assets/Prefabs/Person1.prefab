@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollidesWith:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3584
   ObstaclePaddig: 1
 --- !u!114 &114376278607284040
 MonoBehaviour:

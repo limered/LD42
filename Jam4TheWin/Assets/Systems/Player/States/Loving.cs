@@ -52,6 +52,7 @@ namespace Systems.Player.States
                 ctx.Cat.LoveTimer.Value -= Time.deltaTime;
                 if (ctx.Cat.LoveTimer.Value < 0)
                 {
+                    MessageBroker.Default.Publish(new MessageCatMadeLoveToPerson { Cat = ctx.Cat, Person = coll });
                     ctx.GoToState(new NeedsLove());
                 }
             };
