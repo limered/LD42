@@ -2,6 +2,7 @@
 using SystemBase;
 using Systems.GameState;
 using UniRx;
+using Utils;
 
 namespace Systems.Score
 {
@@ -10,10 +11,22 @@ namespace Systems.Score
     {
         private int _angryPersons;
         private int _lovedPersons;
-        private int _maxScore = 2;
+        private int _maxScore = 42;
 
         public override void Register(ScoreComponent component)
         {
+            IoC.Game.GameStateMachine.CurrentState
+                .Where(state => state is StartScreen)
+                .Select(s => component)
+                .Subscribe(c =>
+                {
+                    _angryPersons = 0;
+                    _lovedPersons = 0;
+                    c.LovedOnes.Value = 0;
+                    c.AngryOnes.Value = 0;
+                })
+                .AddTo(component);
+
             MessageBroker.Default.Receive<MessagePersonLoved>()
                 .Subscribe(IncreaseLoved(component))
                 .AddTo(component);
