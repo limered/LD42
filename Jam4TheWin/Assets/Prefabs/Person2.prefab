@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114822092162543468}
   - component: {fileID: 114193606697158904}
   - component: {fileID: 54409663705372234}
+  - component: {fileID: 114094669428300690}
   m_Layer: 11
   m_Name: Person2
   m_TagString: Untagged
@@ -163,6 +164,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114094669428300690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083763730431174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55883fcb75cf6a44cb78961253f78d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Acceleration: 20
+  MaxSpeed: 0.02
+  MaxDistance: 1
+  Source: {fileID: 0}
 --- !u!114 &114193606697158904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5ab7984d7c74059bc11796074627bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeUntilHappy: 3
 --- !u!114 &114848585345535770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,6 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementMutators:
   - {fileID: 114431908179608838}
+  - {fileID: 114094669428300690}
   - {fileID: 114193606697158904}
   - {fileID: 114873363739988464}
   CanMove:

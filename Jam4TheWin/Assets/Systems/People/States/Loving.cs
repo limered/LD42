@@ -26,6 +26,10 @@ namespace Systems.People.States
             var target = ctx.Person.GetComponent<TargetMutator>();
             target.Target = null;
 
+            var runAway = ctx.Person.GetComponent<RunAwayMutator>();
+            var cat = runAway.Source;
+            runAway.Source = null;
+
             //cat approved love
             MessageBroker.Default.Receive<MessageCatMadeLoveToPerson>()
                 .WaitForFirst(x => x.Person == ctx.Person.GetComponent<Collider>())
@@ -35,8 +39,8 @@ namespace Systems.People.States
             //cat's love is gone
             ctx.Person
                 .OnTriggerExitAsObservable()
-                .WaitForFirst(c => c.GetComponent<InnerSpaceColliderComponent>())
-                .Subscribe(_ => ctx.GoToState(new Angry()))
+                .WaitForFirst(c => c.GetComponent<CatComponent>())
+                .Subscribe(_ => ctx.GoToState(new Angry(cat)))
                 .AddTo(this);
 
             return true;

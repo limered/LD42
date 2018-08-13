@@ -64,6 +64,7 @@ namespace Systems.Player.States
                 context.Cat.PoopingTimer.Value -= Time.deltaTime;
                 if (context.Cat.PoopingTimer.Value < 0)
                 {
+                    context.Cat.InLoveStarted = Time.realtimeSinceStartup;
                     context.GoToState(new NeedsLove());
                 }
             };

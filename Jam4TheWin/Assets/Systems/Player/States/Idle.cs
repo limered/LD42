@@ -1,9 +1,10 @@
-﻿using GameState.Messages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SystemBase.StateMachineBase;
+using Systems.GameState;
 using UniRx;
+using Utils;
 
 namespace Systems.Player.States
 {
@@ -22,7 +23,8 @@ namespace Systems.Player.States
         public bool Enter<TState>(IStateContext<TState> context) where TState : IState
         {
             var ctx = (CatStateContext)context;
-            _startGameDisposable = MessageBroker.Default.Receive<MessageStartGame>()
+            _startGameDisposable = IoC.Game.GameStateMachine.CurrentState
+                .Where(state=> state.GetType() == typeof(Running))
                 .Subscribe(game => ctx.GoToState(new Hungry()));
             return true;
         }

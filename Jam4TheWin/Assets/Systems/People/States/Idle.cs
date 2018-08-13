@@ -42,7 +42,7 @@ namespace Systems.People.States
 
             //Cat is near -> go to cat
             ctx.Person
-                .OnTriggerEnterAsObservable()
+                .OnTriggerStayAsObservable()
                 .WaitForFirst(c => c.GetComponent<LoveColliderComponent>())
                 .Subscribe(collider => ctx.GoToState(new RunningToCat(collider.transform.parent.gameObject)))
                 .AddTo(this);

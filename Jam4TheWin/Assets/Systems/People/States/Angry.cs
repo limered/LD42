@@ -14,6 +14,12 @@ namespace Systems.People.States
 {
     public class Angry : PersonState
     {
+        private GameObject _cat;
+        public Angry(GameObject cat)
+        {
+            _cat = cat;
+        }
+
         public override ReadOnlyCollection<Type> ValidNextStates { get { return new ReadOnlyCollection<Type>(new Type[] { typeof(Loving) }); } }
         public override bool Enter<TState>(IStateContext<TState> context)
         {
@@ -21,11 +27,15 @@ namespace Systems.People.States
 
             var target = ctx.Person.GetComponent<TargetMutator>();
             target.Target = GameObject.FindObjectOfType<DoorComponent>().gameObject;
+            target.MaxSpeed = 0.02f;
+
+            var runAway = ctx.Person.GetComponent<RunAwayMutator>();
+            runAway.Source = _cat;
 
             //Cat gets really close
             ctx.Person
                 .OnTriggerEnterAsObservable()
-                .WaitForFirst(c => c.GetComponent<InnerSpaceColliderComponent>())
+                .WaitForFirst(c => c.GetComponent<CatComponent>())
                 .Subscribe(_ => ctx.GoToState(new Loving()))
                 .AddTo(this);
 
