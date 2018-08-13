@@ -8,6 +8,7 @@ TagManager:
   - furniture
   - gathering spot
   - floor
+  - door
   layers:
   - Default
   - TransparentFX
@@ -24,6 +25,7 @@ TagManager:
   - Cat
   - Floor
   - Camera
+  - Door
   - Interactable
   - 
   - 

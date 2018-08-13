@@ -507,11 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollidesWith:
     serializedVersion: 2
-<<<<<<< develop
-    m_Bits: 9728
-=======
     m_Bits: 2147483647
->>>>>>> add animationSystem for people
   ObstaclePaddig: 1
 --- !u!114 &114256925447846622
 MonoBehaviour:
