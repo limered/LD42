@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using SystemBase.StateMachineBase;
@@ -7,9 +6,7 @@ using Systems.Movement;
 using Systems.Player;
 using UniRx;
 using UniRx.Triggers;
-using UnityEngine;
 using Utils.DotNet;
-using Utils.Plugins;
 
 namespace Systems.People.States
 {
@@ -22,6 +19,7 @@ namespace Systems.People.States
                 return new ReadOnlyCollection<Type>(new[] { typeof(RunningToCat), typeof(Idle) });
             }
         }
+
         public override bool Enter<TState>(IStateContext<TState> context)
         {
             var ctx = (PersonStateContext)context;
